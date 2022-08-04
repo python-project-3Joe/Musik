@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:musik/Login/findMain.dart';
+import 'package:musik/Login/findMain2.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,11 +92,11 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             TextButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const SearchMainPage()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const FindMain()));
                               },
                               child: const Text(
                                 '아이디찾기',
@@ -112,11 +113,11 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             TextButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const SearchMainPage()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const FindMain2()));
                               },
                               child: const Text(
                                 ' 비밀번호찾기',
@@ -164,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/signup');
+                            Navigator.pushNamed(context, '/Sign_up');
                           },
                           // style: ElevatedButton.styleFrom(
                           //   fixedSize: const Size(300, 50),
@@ -231,19 +232,19 @@ class _LoginPageState extends State<LoginPage> {
       if (result[0] == 'ERROR') {
         // print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
-      // } else {
-      //   users.addAll(result);
-      //   // print(users); // 결과 확인용
+        // } else {
+        //   users.addAll(result);
+        //   // print(users); // 결과 확인용
 
-      //   Navigator.pop(context);
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) {
-      //         return DailyList(users: users[0]); // Map으로 보내
-      //       },
-      //     ),
-      //   ); // 로그인 성공 리스트 화면으로 이동
+        //   Navigator.pop(context);
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) {
+        //         return DailyList(users: users[0]); // Map으로 보내
+        //       },
+        //     ),
+        //   ); // 로그인 성공 리스트 화면으로 이동
       }
     });
 
