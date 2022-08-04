@@ -30,7 +30,7 @@ class _DiaryAddState extends State<DiaryAdd> {
     emotionPath = "";
     eid = 0;
     result = '';
-    uid = User.u_id;
+    uid = User.uId;
   }
 
   @override
@@ -355,7 +355,7 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid');
+        'http://localhost:8080/Flutter/musik/daily_add.jsp?dcontent=$dcontent&eid=$eid&uid=$uid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
