@@ -1,11 +1,11 @@
 // user 테이블 클래스
 
 class User{
-  static String u_id = "";
-  static String u_pw = "";
-  static String u_email = "";
-  static String u_nickname = "";
-  static int u_quit = 0;
+  static String uId = "";
+  static String uPw = "";
+  static String uEmail = "";
+  static String uNickname = "";
+  static int uQuit = 0;
 
 // constructor
   // User(

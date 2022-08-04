@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/Login/sign_up.dart';
+import 'package:musik/maintabpage.dart';
 import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 import 'package:musik/view/diaryhome.dart';
@@ -31,12 +32,17 @@ class MyApp extends StatelessWidget {
 
         // diary 관련 부분
         '/main': (context) => const DiaryHome(),
+        
         // diary 추가
         '/diaryadd': (context) => const DiaryAdd(),
+        
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
+
+        // tabbar 페이지
+        '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/diaryadd',
+      initialRoute: '/tabbar',
       debugShowCheckedModeBanner: false,
     );
   }

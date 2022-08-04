@@ -17,14 +17,14 @@ class _DiaryListState extends State<DiaryList> {
   // property
   late List diaryList;
 
-  late String id;
+  late String uId;
 
   // init
   @override
   void initState() {
     super.initState();
     diaryList = [];
-    id = User.u_id;
+    uId = User.uId;
     getJSONData();
   }
 
@@ -201,7 +201,7 @@ class _DiaryListState extends State<DiaryList> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        User.u_nickname,
+                        User.uNickname,
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -216,7 +216,7 @@ class _DiaryListState extends State<DiaryList> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        id,
+                        uId,
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -284,7 +284,7 @@ class _DiaryListState extends State<DiaryList> {
   Future<bool> getJSONData() async {
     diaryList = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_list_flutter.jsp?uid=$id');
+        'http://localhost:8080/Flutter/daily_list_flutter.jsp?uid=$uId');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =
