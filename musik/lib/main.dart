@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/Login/sign_up.dart';
+import 'package:musik/view/diaryhome.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
         '/Log_in': (context) => const LoginPage(),
         '/Find_id': (context) => const FindMain(),
         '/Find_pw': (context) => const FindMain2(),
+        '/main': (context) => const DiaryHome(),
       },
-      initialRoute: '/Log_in',
+      initialRoute: '/main',
       debugShowCheckedModeBanner: false,
     );
   }

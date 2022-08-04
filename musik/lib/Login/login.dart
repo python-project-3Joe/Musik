@@ -242,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return DiaryHome(users: users[0]); // Map으로 보내
+              return DiaryHome(); // Map으로 보내
             },
           ),
         ); // 로그인 성공 리스트 화면으로 이동

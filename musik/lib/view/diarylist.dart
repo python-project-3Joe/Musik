@@ -179,7 +179,7 @@ class _DailyListState extends State<DailyList> {
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return DiaryAdd(uID: widget.users['uid']); // Map으로 보내
+                return DiaryAdd(); // Map으로 보내
               },
             )).then((value) => getJSONData());
           }),

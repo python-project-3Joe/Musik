@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class DiaryAdd extends StatefulWidget {
-  final String uID;
-  const DiaryAdd({Key? key, required this.uID}) : super(key: key);
+  const DiaryAdd({Key? key}) : super(key: key);
 
   @override
   State<DiaryAdd> createState() => _DiaryAddState();
@@ -28,7 +27,7 @@ class _DiaryAddState extends State<DiaryAdd> {
     emotionPath = "";
     eid = 0;
     result = '';
-    uid = widget.uID;
+    // uid = widget.uID;
   }
 
   @override
