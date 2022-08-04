@@ -258,8 +258,8 @@ class _FindIdState extends State<FindId> {
     if (data.isEmpty) {
       return true;
     } else {
-      id = data[0]['uId'];
-      var userquite = data[0]['uQuit']; //탈퇴여부 값 받아오기
+      id = data[0]['u_id'];
+      var userquite = data[0]['u_quit']; //탈퇴여부 값 받아오기
       uq = userquite;
       return true;
     }
