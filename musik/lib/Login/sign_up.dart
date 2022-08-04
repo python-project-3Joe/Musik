@@ -90,7 +90,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: const InputDecoration(
                               labelText: 'ID 를 입력하세요',
                               labelStyle: TextStyle(
-                                color: Color.fromARGB(150, 87, 62, 162),
+                                color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -133,10 +133,10 @@ class _SignUpState extends State<SignUp> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: const Color.fromARGB(255, 139, 128, 222),
+                              primary: Color.fromARGB(255, 255, 225, 53),
                               minimumSize: const Size(80, 40),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             child: const Text('중복체크'))
@@ -259,10 +259,10 @@ class _SignUpState extends State<SignUp> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 139, 128, 222),
+                        primary: const Color.fromARGB(255, 255, 225, 53),
                         minimumSize: const Size(80, 40),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       child: const Text('회원가입하기'))
