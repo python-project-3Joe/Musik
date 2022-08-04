@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/userMessage.dart';
 import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 
 class DailyList extends StatefulWidget {
-  final Map users;
-  const DailyList({Key? key, required this.users}) : super(key: key);
+  const DailyList({Key? key}) : super(key: key);
 
   @override
   State<DailyList> createState() => _DailyListState();
@@ -24,7 +24,7 @@ class _DailyListState extends State<DailyList> {
   void initState() {
     super.initState();
     diaryList = [];
-    id = widget.users['uid'];
+    id = User.u_id;
     getJSONData();
   }
 
@@ -201,7 +201,7 @@ class _DailyListState extends State<DailyList> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        widget.users['uname'],
+                        User.u_nickname,
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -216,7 +216,7 @@ class _DailyListState extends State<DailyList> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        widget.users['uid'],
+                        id,
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,

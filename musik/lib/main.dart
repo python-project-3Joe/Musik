@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/Login/sign_up.dart';
+import 'package:musik/view/diaryadd.dart';
+import 'package:musik/view/diarycontent.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'Login/login.dart';
 
@@ -25,9 +27,13 @@ class MyApp extends StatelessWidget {
         '/Log_in': (context) => const LoginPage(),
         '/Find_id': (context) => const FindMain(),
         '/Find_pw': (context) => const FindMain2(),
+
+        // diary 관련 부분
+        '/main': (context) => const DiaryHome(),
+        '/diaryadd': (context) => const DiaryAdd(),
         '/main': (context) => const DiaryHome(),
       },
-      initialRoute: '/main',
+      initialRoute: '/Log_in',
       debugShowCheckedModeBanner: false,
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:musik/userMessage.dart';
+
 class DiaryAdd extends StatefulWidget {
   const DiaryAdd({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class _DiaryAddState extends State<DiaryAdd> {
   late String dcontent;
   late String result;
   late String uid;
+
   @override
   void initState() {
     super.initState();
@@ -27,7 +30,7 @@ class _DiaryAddState extends State<DiaryAdd> {
     emotionPath = "";
     eid = 0;
     result = '';
-    // uid = widget.uID;
+    uid = User.u_id;
   }
 
   @override
