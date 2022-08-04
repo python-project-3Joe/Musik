@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'view/login.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -7,19 +10,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mood Diary',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       routes: {
         '/signin': (context) => const LoginPage(), // 로그인 화면
-        '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
-      initialRoute:  '/signin',
+      initialRoute: '/signin',
       debugShowCheckedModeBanner: false,
     );
   }
