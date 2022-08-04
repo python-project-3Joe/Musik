@@ -73,7 +73,7 @@ class _MainTabPageState extends State<MainTabPage>
           ),
           Tab(
             icon: Icon(
-              Icons.music_note_rounded,
+              Icons.calendar_month_rounded,
               color: controller.index == 1 ? Colors.deepPurple : Colors.black,
             ),
             text: "Calendar",
@@ -87,7 +87,7 @@ class _MainTabPageState extends State<MainTabPage>
           ),
           Tab(
             icon: Icon(
-              Icons.calendar_month_rounded,
+              Icons.music_note_rounded,
               color: controller.index == 2 ? Colors.deepPurple : Colors.black,
             ),
             text: "Music",
