@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,9 +16,17 @@ class DiaryHome extends StatelessWidget {
             const Text('나의 감정을 기록하면\n뮤식이가 감정을 분석해서\n음악을 추천해줘요'),
             TextButton(
               onPressed: () {
-                Navigator.push(context, route)
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return DiaryHome(users: users[0]); // Map으로 보내
+                //     },
+                //   ),
+                // );
               },
-              child: const Text('기록하기'),),
+              child: const Text('기록하기'),
+            ),
           ],
         ),
       ),
