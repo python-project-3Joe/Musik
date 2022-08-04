@@ -1,6 +1,6 @@
 // user 테이블 클래스
 
-class User{
+class User {
   static String uId = "";
   static String uPw = "";
   static String uEmail = "";

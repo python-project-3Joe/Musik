@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
 
         // diary 관련 부분
         '/main': (context) => const DiaryHome(),
-        
+
         // diary 추가
         '/diaryadd': (context) => const DiaryAdd(),
-        
+
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
 
