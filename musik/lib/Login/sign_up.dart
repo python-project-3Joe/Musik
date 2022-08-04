@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                               bool isDuplicated = false;
                               bool isIdEmpty = false;
                               for (int i = 0; i < data.length; i++) {
-                                if (data[i]['uId'] == id) {
+                                if (data[i]['u_id'] == id) {
                                   errorSnackBar_id(context);
                                   isDuplicated = true;
                                   isIdEmpty = false;
