@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
+import 'package:musik/maintabpage.dart';
 import 'package:musik/view/diaryhome.dart';
 
 class LoginPage extends StatefulWidget {
@@ -242,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return DiaryHome(); // Map으로 보내
+              return const MainTabPage(); // Map으로 보내
             },
           ),
         ); // 로그인 성공 리스트 화면으로 이동
