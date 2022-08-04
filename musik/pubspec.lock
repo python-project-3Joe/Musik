@@ -95,8 +95,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -109,7 +107,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
->>>>>>> 1f90e3a9f65828761722ae4bce5551a00ea5a981
   http:
     dependency: "direct main"
     description:

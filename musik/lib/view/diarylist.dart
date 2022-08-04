@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/view/diaryadd.dart';
+import 'package:musik/view/diarycontent.dart';
 
 class DailyList extends StatefulWidget {
   final Map users;
@@ -50,14 +52,14 @@ class _DailyListState extends State<DailyList> {
             height: 50,
             child: IconButton(
                 onPressed: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const TreeWgt(
-                            weather: 'sunny', treeGrowth: 80); // Map으로 보내
-                      },
-                    )).then((value) => getJSONData());
-                  });
+                  // setState(() {
+                  //   Navigator.push(context, MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return const TreeWgt(
+                  //           weather: 'sunny', treeGrowth: 80); // Map으로 보내
+                  //     },
+                  //   )).then((value) => getJSONData());
+                  // });
                 },
                 icon: Image.asset(
                   'images/tree.png',
@@ -89,7 +91,7 @@ class _DailyListState extends State<DailyList> {
                       setState(() {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return DailyContent(
+                            return DiaryContent(
                                 diaryList: diaryList[index]); // Map으로 보내
                           },
                         )).then((value) => getJSONData());
@@ -177,7 +179,7 @@ class _DailyListState extends State<DailyList> {
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return DailyAdd(uID: widget.users['uid']); // Map으로 보내
+                return DiaryAdd(uID: widget.users['uid']); // Map으로 보내
               },
             )).then((value) => getJSONData());
           }),

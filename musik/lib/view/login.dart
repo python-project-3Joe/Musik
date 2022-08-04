@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/view/diaryhome.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -219,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     users = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_login.jsp?uid=$id&upw=$pw'
+        'http://localhost:8080/Flutter/daily_login.jsp?u_id=$id&u_pw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
@@ -231,19 +232,19 @@ class _LoginPageState extends State<LoginPage> {
       if (result[0] == 'ERROR') {
         // print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
-      // } else {
-      //   users.addAll(result);
-      //   // print(users); // 결과 확인용
+      } else {
+        users.addAll(result);
+        // print(users); // 결과 확인용
 
-      //   Navigator.pop(context);
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) {
-      //         return DailyList(users: users[0]); // Map으로 보내
-      //       },
-      //     ),
-      //   ); // 로그인 성공 리스트 화면으로 이동
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return DiaryHome(users: users[0]); // Map으로 보내
+            },
+          ),
+        ); // 로그인 성공 리스트 화면으로 이동
       }
     });
 

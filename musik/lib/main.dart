@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musik/view/diaryhome.dart';
 import 'view/login.dart';
 
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/signin': (context) => const LoginPage(), // 로그인 화면
-        // '/signup': (context) => const RegisterPage(), // 회원 가입 화면
+        // '/diaryhome': (context) => const DiaryHome(), // 회원 가입 화면
         // 그 외 화면 이동은 MaterialRoute방식으로 사용
       },
       initialRoute: '/signin',
