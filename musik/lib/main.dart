@@ -5,6 +5,7 @@ import 'package:musik/Login/sign_up.dart';
 import 'package:musik/maintabpage.dart';
 import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'Login/login.dart';
@@ -23,6 +24,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
+      home: AnimatedSplashScreen(
+          // 스플래쉬
+          splash: 'images/Splash.png',
+          splashIconSize: 200,
+          duration: 1000,
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: Colors.black,
+          nextScreen: const LoginPage()),
       routes: {
         // Login
         '/Sign_up': (context) => const SignUp(),
