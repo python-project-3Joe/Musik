@@ -6,14 +6,14 @@ import 'package:musik/userMessage.dart';
 import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 
-class DailyList extends StatefulWidget {
-  const DailyList({Key? key}) : super(key: key);
+class DiaryList extends StatefulWidget {
+  const DiaryList({Key? key}) : super(key: key);
 
   @override
-  State<DailyList> createState() => _DailyListState();
+  State<DiaryList> createState() => _DiaryListState();
 }
 
-class _DailyListState extends State<DailyList> {
+class _DiaryListState extends State<DiaryList> {
   // property
   late List diaryList;
 

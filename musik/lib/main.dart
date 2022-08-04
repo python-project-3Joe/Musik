@@ -5,6 +5,7 @@ import 'package:musik/Login/sign_up.dart';
 import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 import 'package:musik/view/diaryhome.dart';
+import 'package:musik/view/diarylist.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -30,10 +31,12 @@ class MyApp extends StatelessWidget {
 
         // diary 관련 부분
         '/main': (context) => const DiaryHome(),
+        // diary 추가
         '/diaryadd': (context) => const DiaryAdd(),
-        '/main': (context) => const DiaryHome(),
+        // diary 리스트
+        '/diarylist': (context) => const DiaryList(),
       },
-      initialRoute: '/Log_in',
+      initialRoute: '/diaryadd',
       debugShowCheckedModeBanner: false,
     );
   }
