@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:musik/view/diaryhome.dart';
-import 'view/login.dart';
-
-
+import 'package:musik/Login/findMain.dart';
+import 'package:musik/Login/findMain2.dart';
+import 'package:musik/Login/sign_up.dart';
+import 'Login/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,11 +19,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
       ),
       routes: {
-        '/signin': (context) => const LoginPage(), // 로그인 화면
-        // '/diaryhome': (context) => const DiaryHome(), // 회원 가입 화면
-        // 그 외 화면 이동은 MaterialRoute방식으로 사용
+        // Login
+        '/Sign_up': (context) => const SignUp(),
+        '/Log_in': (context) => const LoginPage(),
+        '/Find_id': (context) => const FindMain(),
+        '/Find_pw': (context) => const FindMain2(),
       },
-      initialRoute: '/signin',
+      initialRoute: '/Log_in',
       debugShowCheckedModeBanner: false,
     );
   }
