@@ -161,7 +161,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: const InputDecoration(
                               labelText: '특수,대소문자,숫자 포함 8~15자이내로 입력',
                               labelStyle: TextStyle(
-                                color: Color.fromARGB(150, 87, 62, 162),
+                                color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -195,7 +195,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: const InputDecoration(
                               labelText: '성함을 입력하세요',
                               labelStyle: TextStyle(
-                                color: Color.fromARGB(150, 87, 62, 162),
+                                color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -228,7 +228,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: const InputDecoration(
                               labelText: 'email 형식으로 입력하세요',
                               labelStyle: TextStyle(
-                                color: Color.fromARGB(150, 87, 62, 162),
+                                color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
