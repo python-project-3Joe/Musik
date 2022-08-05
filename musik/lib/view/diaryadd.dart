@@ -70,9 +70,10 @@ class _DiaryAddState extends State<DiaryAdd> {
                         },
                         child: Column(
                           children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('images/joy.png'),
-                              radius: 40,
+                            Image.asset(
+                              'images/joy.png',
+                              width: 100,
+                              height: 90,
                             ),
                             const SizedBox(
                               height: 10,
@@ -104,10 +105,10 @@ class _DiaryAddState extends State<DiaryAdd> {
                         },
                         child: Column(
                           children: [
-                            const CircleAvatar(
-                              // db에서 받아온 이미지패스경로받기
-                              backgroundImage: AssetImage('images/dumdum.png'),
-                              radius: 40,
+                            Image.asset(
+                              'images/dumdum.png',
+                              width: 100,
+                              height: 90,
                             ),
                             const SizedBox(
                               height: 10,
@@ -139,11 +140,10 @@ class _DiaryAddState extends State<DiaryAdd> {
                         },
                         child: Column(
                           children: [
-                            const CircleAvatar(
-                              // db에서 받아온 이미지패스경로받기
-                              backgroundImage: AssetImage(
-                                  'images/sad.png' /*emotionPath */),
-                              radius: 40,
+                            Image.asset(
+                              'images/sad.png',
+                              width: 100,
+                              height: 90,
                             ),
                             const SizedBox(
                               height: 10,

@@ -62,7 +62,7 @@ class _DiaryListState extends State<DiaryList> {
                   // });
                 },
                 icon: Image.asset(
-                  'images/tree.png',
+                  'images/musik.png',
                   color: const Color.fromARGB(255, 119, 216, 164),
                 )),
           )
@@ -284,7 +284,7 @@ class _DiaryListState extends State<DiaryList> {
   Future<bool> getJSONData() async {
     diaryList = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/daily_list_flutter.jsp?uid=$uId');
+        'http://localhost:8080/Flutter/musik/daily_list_flutter.jsp?uid=$uId');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =

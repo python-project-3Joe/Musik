@@ -9,6 +9,7 @@ import 'package:musik/view/diarycontent.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
+import 'package:musik/view/emotional_alnalysis.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           duration: 1000,
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.black,
-          nextScreen: const LoginPage()),
+          nextScreen: const MainTabPage()),
       routes: {
         // Login
         '/Sign_up': (context) => const SignUp(),
@@ -50,10 +51,13 @@ class MyApp extends StatelessWidget {
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
 
+        // 감정 분석 결과
+        '/emotional_analysis': (context) => const EmotionalAnalysis(),
+
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      // initialRoute: '/Log_in',
+      // initialRoute: '/emotional_analysis',
       debugShowCheckedModeBanner: false,
     );
   }
