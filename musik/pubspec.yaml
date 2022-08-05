@@ -44,7 +44,7 @@ dependencies:
   shared_preferences: ^2.0.15		# key값 data 저장
   get: ^4.6.5						        # 상태관리
   google_sign_in: ^5.3.3      	# 구글 로그인 API
-
+  pie_chart: ^5.3.2             # pie chart 구현
 dev_dependencies:
   flutter_test:
     sdk: flutter

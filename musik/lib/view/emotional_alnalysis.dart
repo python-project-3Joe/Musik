@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class EmotionalAnalysis extends StatefulWidget {
   const EmotionalAnalysis({Key? key}) : super(key: key);
@@ -10,6 +9,18 @@ class EmotionalAnalysis extends StatefulWidget {
 }
 
 class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
+  // Property
+  Map<String, double> dataMap = {
+    "기쁨": 5,
+    "무관심": 3,
+    "슬픔": 2,
+  };
+
+  final colorList = <Color>[
+    Color.fromARGB(255, 214, 69, 58),
+    Colors.yellowAccent,
+    Colors.blueAccent,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,19 +35,177 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text('뮤식이가 분석한 결과'),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Text(
+                '뮤식이가 분석한 결과',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
             Column(
               children: [
+                Image.asset(
+                  'images/joy.png',
+                  width: 100,
+                  height: 90,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
-                  children: [
-                    Text('감기에 걸린 날'),
-                    Text('의 감정은'),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      '감기에 걸린 날',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 252, 199, 9),
+                      ),
+                    ),
+                    Text(
+                      '의 감정은',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      '기쁨',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      '으로 보여져요',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                      ),
+                    ),
                   ],
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            PieChart(
+              dataMap: dataMap,
+              animationDuration: Duration(milliseconds: 800),
+              chartLegendSpacing: 32,
+              chartRadius: MediaQuery.of(context).size.width / 3.2,
+              colorList: colorList,
+              initialAngleInDegree: 0,
+              chartType: ChartType.ring,
+              ringStrokeWidth: 32,
+              centerText: "HYBRID",
+              legendOptions: LegendOptions(
+                showLegendsInRow: false,
+                legendPosition: LegendPosition.right,
+                showLegends: true,
+                legendShape: BoxShape.circle,
+                legendTextStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              chartValuesOptions: ChartValuesOptions(
+                showChartValueBackground: true,
+                showChartValues: true,
+                showChartValuesInPercentage: false,
+                showChartValuesOutside: false,
+                decimalPlaces: 1,
+              ),
+              // gradientList: ---To add gradient colors---
+              // emptyColorGradient: ---Empty Color gradient---
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Text(
+                    '뮤식이의 두둠칫',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(280, 50),
+                      primary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      //
+                    },
+                    child: const Text(
+                      '뮤식이의 AI 작사',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(280, 50),
+                      primary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      //
+                    },
+                    child: const Text(
+                      '뮤식이의 음악추천',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
