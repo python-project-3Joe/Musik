@@ -235,6 +235,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                   dtitle = titleEdit.text;
                   dcontent = contentEdit.text;
                   insertAction();
+                  getJSONData();// 데이터저장
               },
               child: const Text(
                 'AI 감정 분석',
@@ -264,7 +265,17 @@ class _DiaryAddState extends State<DiaryAdd> {
       }
     });
   }
-
+// 일기 문장을 가지고 일기감정.py로 들어가게 됨
+  void getJSONData() async {
+    var url = Uri.parse(
+        'http://localhost:5000/iris?&dcontent=$dcontent');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+      // print(result);
+    });
+  }  
   _showDialog(BuildContext context) {
     showDialog(
         context: context,
