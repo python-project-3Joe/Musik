@@ -253,4 +253,34 @@ class _LoginPageState extends State<LoginPage> {
     return true;
   } // Login
 
+  // _showDialog(BuildContext context) {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext ctx) {
+  //         return AlertDialog(
+  //           title: const Icon(
+  //             Icons.task_alt_rounded,
+  //             size: 34,
+  //             color: Color.fromRGBO(83, 151, 253, 100),
+  //           ),
+  //           content: const Text('로그인 되었습니다.'),
+  //           actions: [
+  //             Center(
+  //               child: TextButton(
+  //                 child: const Text('확인'),
+  //                 onPressed: () {
+  //                   Navigator.of(ctx).pop();
+  //                   Navigator.push(
+  //                       context,
+  //                       MaterialPageRoute(
+  //                         builder: (context) => const LoginPage(),
+  //                       ));
+  //                 },
+  //               ),
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
+
 } //END
