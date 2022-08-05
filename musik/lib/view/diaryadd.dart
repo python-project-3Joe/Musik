@@ -252,7 +252,7 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/musik/daily_add.jsp?dtitle=$dtitle&dcontent=$dcontent&uid=$uid');
+        'http://localhost:8080/Flutter/musik/daily_add.jsp?dtitle=$dtitle&dcontent=$dcontent&demoji=$emotion&uid=$uid');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

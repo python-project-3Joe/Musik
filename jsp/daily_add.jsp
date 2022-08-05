@@ -10,6 +10,7 @@
     request.setCharacterEncoding("utf-8");
     String d_title =request.getParameter("dtitle");
     String d_content =request.getParameter("dcontent");
+    String d_emoji =request.getParameter("demoji");
     String u_id =request.getParameter("uid");
   
 
