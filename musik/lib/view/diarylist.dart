@@ -295,7 +295,7 @@ class _DiaryListState extends State<DiaryList> {
     setState(() {
       diaryList.addAll(result);
     });
-
+    
     return true;
   }
 }
