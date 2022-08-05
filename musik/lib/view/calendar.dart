@@ -16,83 +16,104 @@ class _CalendarState extends State<Calendar> {
   DateTime focusedDay = DateTime.now();
 
   late String uId;
+  late String uNickname;
 
   @override
   void initState() {
     super.initState();
     uId = User.uId;
+    uNickname = User.uNickname;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: Text('$uNickname 님\n 감정 캘린더'),
+      // ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('$uNickname 님'),
+                  Text('감정 캘린더'),
+                ],
+              ),
               //calendar
-              TableCalendar(
-                locale: 'ko-KR',
-                firstDay: DateTime(1990),
-                lastDay: DateTime(2050),
-                focusedDay: selectedDay,
-                calendarFormat: _calendarFormat,
-                onFormatChanged: (CalendarFormat format) {
-                  setState(() {
-                    _calendarFormat = format;
-                  });
-                },
+              Column(
+                children: [
+                  SizedBox(
+                    height: 400,
+                    width: 350,
+                    child: TableCalendar(
+                      locale: 'ko-KR',
+                      firstDay: DateTime(1990),
+                      lastDay: DateTime(2050),
+                      focusedDay: selectedDay,
+                      calendarFormat: _calendarFormat,
+                      onFormatChanged: (CalendarFormat format) {
+                        setState(() {
+                          _calendarFormat = format;
+                        });
+                      },
 
-                // Day Changed
-                onDaySelected: (DateTime selectDay, DateTime focusDay) {
-                  setState(() {
-                    selectedDay = selectDay;
-                    focusedDay = focusDay; // update `_focusedDay` here as well
-                    // cDate = selectedDay.toString().substring(0, 10);
-                  });
-                  // getJSONData();
-                },
+                      // Day Changed
+                      onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                        setState(() {
+                          selectedDay = selectDay;
+                          focusedDay =
+                              focusDay; // update `_focusedDay` here as well
+                          // cDate = selectedDay.toString().substring(0, 10);
+                        });
+                        // getJSONData();
+                      },
 
-                selectedDayPredicate: (DateTime day) {
-                  return isSameDay(selectedDay, day);
-                },
+                      selectedDayPredicate: (DateTime day) {
+                        return isSameDay(selectedDay, day);
+                      },
 
-                // eventLoader: (day) {
-                //   List dot = [];
+                      // eventLoader: (day) {
+                      //   List dot = [];
 
-                //   for (int i = 0; i < allDatedata.length; i++) {
-                //     if (allDatedata.isNotEmpty) {
-                //       if (day.toString().substring(0, 10) ==
-                //           allDatedata[i]['cDate']) {
-                //         dot.add(true);
-                //       }
-                //     }
-                //   }
-                //   for (int a = 0; a < allAnalysisData.length; a++) {
-                //     if (allAnalysisData.isNotEmpty) {
-                //       if (day.toString().substring(0, 10) ==
-                //           allAnalysisData[a]['bDate']) {
-                //         dot.add(true);
-                //       }
-                //     }
-                //   }
-                //   return dot;
-                // },
+                      //   for (int i = 0; i < allDatedata.length; i++) {
+                      //     if (allDatedata.isNotEmpty) {
+                      //       if (day.toString().substring(0, 10) ==
+                      //           allDatedata[i]['cDate']) {
+                      //         dot.add(true);
+                      //       }
+                      //     }
+                      //   }
+                      //   for (int a = 0; a < allAnalysisData.length; a++) {
+                      //     if (allAnalysisData.isNotEmpty) {
+                      //       if (day.toString().substring(0, 10) ==
+                      //           allAnalysisData[a]['bDate']) {
+                      //         dot.add(true);
+                      //       }
+                      //     }
+                      //   }
+                      //   return dot;
+                      // },
 
-                // Calendar Style
-                calendarStyle: CalendarStyle(
-                  selectedDecoration: BoxDecoration(
-                    color: Colors.purple.shade100,
-                    shape: BoxShape.rectangle,
+                      // Calendar Style
+                      calendarStyle: CalendarStyle(
+                        selectedDecoration: BoxDecoration(
+                          color: Colors.purple.shade100,
+                          shape: BoxShape.rectangle,
+                        ),
+                        todayDecoration: const BoxDecoration(
+                          color: Color.fromARGB(178, 186, 104, 200),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      headerStyle: const HeaderStyle(
+                        formatButtonShowsNext: false,
+                      ),
+                    ),
                   ),
-                  todayDecoration: const BoxDecoration(
-                    color: Color.fromARGB(178, 186, 104, 200),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                headerStyle: const HeaderStyle(
-                  formatButtonShowsNext: false,
-                ),
+                ],
               ),
             ],
           ),

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/maintabpage.dart';
+import 'package:musik/userMessage.dart';
 import 'package:musik/view/diaryhome.dart';
 
 class LoginPage extends StatefulWidget {
@@ -237,7 +238,8 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         users.addAll(result);
         // print(users); // 결과 확인용
-
+        User.uId = id;
+        User.uNickname = users[0]['u_nickname'];
         Navigator.pop(context);
         Navigator.push(
           context,

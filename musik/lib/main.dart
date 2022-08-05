@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
           nextScreen: const MainTabPage()),
       routes: {
-        // Login
+        // Logins
         '/Sign_up': (context) => const SignUp(),
         '/Log_in': (context) => const LoginPage(),
         '/Find_id': (context) => const FindMain(),
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/emotional_analysis',
+      initialRoute: '/Log_in',
       debugShowCheckedModeBanner: false,
     );
   }
