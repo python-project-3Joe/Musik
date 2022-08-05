@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/emotional_analysis',
+      // initialRoute: '/emotional_analysis',
       debugShowCheckedModeBanner: false,
     );
   }

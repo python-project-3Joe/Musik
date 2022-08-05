@@ -11,16 +11,17 @@ class EmotionalAnalysis extends StatefulWidget {
 class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
   // Property
   Map<String, double> dataMap = {
-    "기쁨": 5,
-    "무관심": 3,
-    "슬픔": 2,
+    "기쁨": 70,
+    "무관심": 20,
+    "슬픔": 10,
   };
 
   final colorList = <Color>[
     Color.fromARGB(255, 214, 69, 58),
-    Colors.yellowAccent,
+    Color.fromARGB(255, 252, 199, 9),
     Colors.blueAccent,
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,14 +111,14 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
             ),
             PieChart(
               dataMap: dataMap,
-              animationDuration: Duration(milliseconds: 800),
+              animationDuration: Duration(milliseconds: 900),
               chartLegendSpacing: 32,
               chartRadius: MediaQuery.of(context).size.width / 3.2,
               colorList: colorList,
-              initialAngleInDegree: 0,
+              initialAngleInDegree: 10,
               chartType: ChartType.ring,
               ringStrokeWidth: 32,
-              centerText: "HYBRID",
+              // centerText: "Musik",
               legendOptions: LegendOptions(
                 showLegendsInRow: false,
                 legendPosition: LegendPosition.right,
@@ -132,7 +133,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                 showChartValues: true,
                 showChartValuesInPercentage: false,
                 showChartValuesOutside: false,
-                decimalPlaces: 1,
+                decimalPlaces: 0,
               ),
               // gradientList: ---To add gradient colors---
               // emptyColorGradient: ---Empty Color gradient---
