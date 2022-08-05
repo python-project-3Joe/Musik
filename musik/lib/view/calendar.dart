@@ -83,7 +83,7 @@ class _CalendarState extends State<Calendar> {
                 calendarStyle: CalendarStyle(
                   selectedDecoration: BoxDecoration(
                     color: Colors.purple.shade100,
-                    shape: BoxShape.circle,
+                    shape: BoxShape.rectangle,
                   ),
                   todayDecoration: const BoxDecoration(
                     color: Color.fromARGB(178, 186, 104, 200),
