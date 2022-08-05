@@ -8,8 +8,8 @@
     <%
 
     request.setCharacterEncoding("utf-8");
-    String d_title =request.getParameter("d_title");
-    String d_content =request.getParameter("d_content");
+    String d_title =request.getParameter("dtitle");
+    String d_content =request.getParameter("dcontent");
     String u_id =request.getParameter("uid");
   
 

@@ -10,6 +10,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
+import 'package:musik/view/emotional_lyrics.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/emotional_analysis',
+      // initialRoute: '/emotional_analysis',
       debugShowCheckedModeBanner: false,
     );
   }
