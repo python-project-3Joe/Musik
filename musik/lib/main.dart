@@ -11,6 +11,7 @@ import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
+import 'package:musik/view/select_emotion.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           duration: 1000,
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.black,
-          nextScreen: const MainTabPage()),
+          nextScreen: const SelectEmotion()),
       routes: {
         // Login
         '/Sign_up': (context) => const SignUp(),
