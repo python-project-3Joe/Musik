@@ -4,8 +4,8 @@ import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/Login/sign_up.dart';
 import 'package:musik/maintabpage.dart';
+import 'package:musik/view/calendar.dart';
 import 'package:musik/view/diaryadd.dart';
-import 'package:musik/view/diarycontent.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           duration: 1000,
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.black,
-          nextScreen: const MainTabPage()),
+          nextScreen: const Calendar()),
       routes: {
         // Logins
         '/Sign_up': (context) => const SignUp(),
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/Log_in',
+      // initialRoute: '/Log_in',
       debugShowCheckedModeBanner: false,
     );
   }
