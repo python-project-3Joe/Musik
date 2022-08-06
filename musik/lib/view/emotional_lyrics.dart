@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musik/lyricsMessage.dart';
 
 class EmotionalLyrics extends StatefulWidget {
   const EmotionalLyrics({Key? key}) : super(key: key);
@@ -8,6 +9,35 @@ class EmotionalLyrics extends StatefulWidget {
 }
 
 class _EmotionalLyricsState extends State<EmotionalLyrics> {
+  late String emotion;
+  late String lyrics_result;
+  late String images;
+  late String emotion_name;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    // 유저가 선택한 감정
+    emotion = lyrics.emotion;
+    // 작사 결과값
+    lyrics_result = lyrics.lyric;
+
+    setState(() {
+      if (emotion == 'happy') {
+        emotion_name = '행복';
+        images = "images/joy.png";
+      } else if (emotion == 'sad') {
+        emotion_name = '슬픔';
+        images = "images/sad.png";
+      } else {
+        emotion_name = '무무';
+        images = "images/dumdum.png";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +51,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/joy.png',
+              images,
               width: 100,
               height: 90,
             ),
@@ -32,7 +62,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '기쁨',
+                  "$emotion_name",
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
                     fontSize: 18,
@@ -51,7 +81,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
             const SizedBox(
               height: 15,
             ),
-            Text("노래 가사"),
+            Text(lyrics_result),
             const SizedBox(
               height: 25,
             ),

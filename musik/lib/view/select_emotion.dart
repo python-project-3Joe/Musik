@@ -172,7 +172,6 @@ class _SelectEmotionState extends State<SelectEmotion> {
               onPressed: () {
                 emotion;
                 getJSONData();
-                Navigator.pushNamed(context, '/emotionalLyrics');
               },
               child: const Text(
                 '작사 시작',
@@ -197,10 +196,11 @@ class _SelectEmotionState extends State<SelectEmotion> {
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
+      lyrics.emotion = emotion;
       print(result);
       lyrics.lyric = result;
     });
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pop(context);
       Navigator.pushNamed(context, '/emotionalLyrics');
     });
