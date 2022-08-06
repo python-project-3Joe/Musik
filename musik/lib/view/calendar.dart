@@ -33,6 +33,7 @@ class _CalendarState extends State<Calendar> {
     // uNickname = User.uNickname;
 
     diaryList = [];
+    getJSONData();
   }
 
   @override
