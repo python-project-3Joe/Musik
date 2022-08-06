@@ -1,4 +1,3 @@
-
 <%@page import="java.sql.*"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="org.json.simple.JSONArray"%>
@@ -31,8 +30,8 @@
         ps=conn_mysql.prepareStatement(act1+act2);
         ps.setString(1,d_title);
         ps.setString(2,d_content);
-        ps.setString(4,d_emoji);
-        ps.setString(2,u_id);
+        ps.setString(3,d_emoji);
+        ps.setString(4,u_id);
     
 
         ps.executeUpdate();

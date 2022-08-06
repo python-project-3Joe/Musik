@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           duration: 1000,
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.black,
-          nextScreen: const SelectEmotion()),
+          nextScreen: const MainTabPage()),
       routes: {
         // Login
         '/Sign_up': (context) => const SignUp(),
