@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:musik/Login/findMain.dart';
 import 'package:musik/Login/findMain2.dart';
 import 'package:musik/maintabpage.dart';
+import 'package:musik/userMessage.dart';
 import 'package:musik/view/diaryhome.dart';
 
 class LoginPage extends StatefulWidget {
@@ -222,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     users = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/musik/daily_login.jsp?uid=$id&upw=$pw'
+        'http://172.30.1.17:8080/Flutter/musik/daily_login.jsp?uid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
@@ -237,7 +238,8 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         users.addAll(result);
         // print(users); // 결과 확인용
-
+        User.uId = id;
+        User.uNickname = users[0]['u_nickname'];
         Navigator.pop(context);
         Navigator.push(
           context,

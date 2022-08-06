@@ -34,7 +34,7 @@
             tempJson.put("d_id", rs.getInt(1));
             tempJson.put("d_date", rs.getString(2));
             tempJson.put("d_content", rs.getString(3));
-            tempJson.put("d_emoji", rs.getInt(4));
+            tempJson.put("d_emoji", rs.getString(4));
             tempJson.put("u_id", rs.getString(5));
             itemList.add(tempJson);
             
@@ -42,7 +42,9 @@
         jsonList.put("results", itemList);
         conn_mysql.close();
         out.print(jsonList);
-
+%>
+       {"result":"OK"}
+<%
     }catch(Exception e){
         e.printStackTrace();
 
