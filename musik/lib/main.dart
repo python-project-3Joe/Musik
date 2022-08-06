@@ -56,6 +56,12 @@ class MyApp extends StatelessWidget {
         // 감정 분석 결과
         '/emotional_analysis': (context) => const EmotionalAnalysis(),
 
+        // 작사 감정 선택
+        '/selectEmotion': (context) => const SelectEmotion(),
+
+        // 작사 페이지
+        '/emotionalLyrics': (context) => const EmotionalLyrics(),
+
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },

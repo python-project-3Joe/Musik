@@ -1,4 +1,9 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:musik/lyricsMessage.dart';
 
 class SelectEmotion extends StatefulWidget {
   const SelectEmotion({Key? key}) : super(key: key);
@@ -8,14 +13,17 @@ class SelectEmotion extends StatefulWidget {
 }
 
 class _SelectEmotionState extends State<SelectEmotion> {
-  late String emotion;
+  // happy, sad, Indifference
+  late String emotion; // 감정값
   late String emotionPath;
+  late String result; // 작사 결과값
 
   @override
   void initState() {
     super.initState();
-    emotion = '';
+    emotion = "";
     emotionPath = '';
+    result = '';
   }
 
   @override
@@ -52,7 +60,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/joy.png';
-                        emotion = '기쁨';
+                        emotion = 'happy';
                       });
                     },
                     child: Column(
@@ -68,7 +76,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '기쁨',
-                          style: emotion == '기쁨'
+                          style: emotion == 'happy'
                               ? const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold)
@@ -86,7 +94,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/dumdum.png';
-                        emotion = '무무';
+                        emotion = "Indifference";
                       });
                     },
                     child: Column(
@@ -102,7 +110,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '무무',
-                          style: emotion == '무무'
+                          style: emotion == 'Indifference'
                               ? const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold)
@@ -120,7 +128,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/sad.png';
-                        emotion = '슬픔';
+                        emotion = "sad";
                       });
                     },
                     child: Column(
@@ -136,7 +144,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '슬픔',
-                          style: emotion == '슬픔'
+                          style: emotion == 'sad'
                               ? const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold)
@@ -162,7 +170,9 @@ class _SelectEmotionState extends State<SelectEmotion> {
                 ),
               ),
               onPressed: () {
-                //
+                emotion;
+                getJSONData();
+                Navigator.pushNamed(context, '/emotionalLyrics');
               },
               child: const Text(
                 '작사 시작',
@@ -178,4 +188,21 @@ class _SelectEmotionState extends State<SelectEmotion> {
       ),
     );
   }
-}
+
+// Function
+
+  void getJSONData() async {
+    var url = Uri.parse('http://127.0.0.1:5000//markov?emotion=$emotion');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+      print(result);
+      lyrics.lyric = result;
+    });
+    Timer(Duration(seconds: 3), () {
+      Navigator.pop(context);
+      Navigator.pushNamed(context, '/emotionalLyrics');
+    });
+  }
+}// end
