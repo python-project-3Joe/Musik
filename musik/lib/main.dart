@@ -10,6 +10,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
+import 'package:musik/view/emotional_lyrics.dart';
+import 'package:musik/view/select_emotion.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -53,6 +55,12 @@ class MyApp extends StatelessWidget {
 
         // 감정 분석 결과
         '/emotional_analysis': (context) => const EmotionalAnalysis(),
+
+        // 작사 감정 선택
+        '/selectEmotion': (context) => const SelectEmotion(),
+
+        // 작사 페이지
+        '/emotionalLyrics': (context) => const EmotionalLyrics(),
 
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
