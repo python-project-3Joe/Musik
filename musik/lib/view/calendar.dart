@@ -249,7 +249,7 @@ class _CalendarState extends State<Calendar> {
   Future<bool> getJSONData() async {
     diaryList = []; // 초기화
     var url = Uri.parse(
-        'http://172.30.1.17:8080/Flutter/musik/daily_list_flutter.jsp?uid=$uId');
+        'http://127.0.0.1/:8080/Flutter/musik/daily_list_flutter.jsp?uid=$uId');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =

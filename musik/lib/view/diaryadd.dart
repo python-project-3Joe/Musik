@@ -24,7 +24,7 @@ class _DiaryAddState extends State<DiaryAdd> {
   late String negative;
   late String neutral;
   late String positive;
-  
+
   late String uid;
 
   @override
@@ -232,28 +232,28 @@ class _DiaryAddState extends State<DiaryAdd> {
             height: 80,
           ),
           ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(200, 30),
-                primary: Colors.amber,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                  dtitle = titleEdit.text;
-                  dcontent = contentEdit.text;
-                  //insertAction();
-                  getJSONData();// 데이터저장
-              },
-              child: const Text(
-                'AI 감정 분석',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
-                  fontSize: 15,
-                ),
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(200, 30),
+              primary: Colors.amber,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
+            onPressed: () {
+              dtitle = titleEdit.text;
+              dcontent = contentEdit.text;
+              //insertAction();
+              getJSONData(); // 데이터저장
+            },
+            child: const Text(
+              'AI 감정 분석',
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                fontSize: 15,
+              ),
+            ),
+          ),
         ]),
       ),
     );
@@ -273,27 +273,30 @@ class _DiaryAddState extends State<DiaryAdd> {
       }
     });
   }
+
 // 일기 문장을 가지고 upload_bayes_app.py로 들어가게 됨
   void getJSONData() async {
-    var url = Uri.parse(
-        'http://127.0.0.1:5000/bayes?diary=$dcontent');
+    var url = Uri.parse('http://127.0.0.1:5000/bayes?diary=$dcontent');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+
       result = dataConvertedJSON['result'];
       negative = dataConvertedJSON['negative'];
       positive = dataConvertedJSON['positive'];
-      neutral = dataConvertedJSON['neutural'];
+      neutral = dataConvertedJSON['neutral'];
       print(result);
       print(positive);
       print(neutral);
       print(negative);
+
       diary.result = result;
       diary.positive = positive;
       diary.neutral = neutral;
       diary.negative = negative;
     });
-  }  
+  }
+
   _showDialog(BuildContext context) {
     showDialog(
         context: context,
