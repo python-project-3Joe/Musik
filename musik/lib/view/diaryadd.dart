@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/diaryMessage.dart';
 import 'dart:convert';
 
 import 'package:musik/userMessage.dart';
@@ -20,6 +21,10 @@ class _DiaryAddState extends State<DiaryAdd> {
   late String dtitle;
   late String dcontent;
   late String result;
+  late String negative;
+  late String neutral;
+  late String positive;
+  
   late String uid;
 
   @override
@@ -33,6 +38,9 @@ class _DiaryAddState extends State<DiaryAdd> {
     dtitle = "";
     dcontent = "";
     result = "";
+    negative = "";
+    neutral = "";
+    positive = "";
     uid = User.uId;
   }
 
@@ -234,7 +242,7 @@ class _DiaryAddState extends State<DiaryAdd> {
               onPressed: () {
                   dtitle = titleEdit.text;
                   dcontent = contentEdit.text;
-                  insertAction();
+                  //insertAction();
                   getJSONData();// 데이터저장
               },
               child: const Text(
@@ -268,12 +276,22 @@ class _DiaryAddState extends State<DiaryAdd> {
 // 일기 문장을 가지고 upload_bayes_app.py로 들어가게 됨
   void getJSONData() async {
     var url = Uri.parse(
-        'http://127.0.0.1:5000/bayes?&dcontent=$dcontent');
+        'http://127.0.0.1:5000/bayes?diary=$dcontent');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
-      // print(result);
+      negative = dataConvertedJSON['negative'];
+      positive = dataConvertedJSON['positive'];
+      neutral = dataConvertedJSON['neutural'];
+      print(result);
+      print(positive);
+      print(neutral);
+      print(negative);
+      diary.result = result;
+      diary.positive = positive;
+      diary.neutral = neutral;
+      diary.negative = negative;
     });
   }  
   _showDialog(BuildContext context) {
