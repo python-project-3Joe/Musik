@@ -27,12 +27,13 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     super.initState();
+
     uId = "aaa";
     uNickname = "가슬";
+    diaryList = [];
+    getJSONData();
     // uId = User.uId;
     // uNickname = User.uNickname;
-
-    diaryList = [];
   }
 
   @override
