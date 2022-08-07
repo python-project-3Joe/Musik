@@ -9,7 +9,7 @@ app = Flask(__name__)
 def bayes():
     diary = request.args.get("diary") # diary 감정값 받아오기
 
-    emotion_df = pd.read_csv("../../Data/Bayes_emotion_df.csv")
+    emotion_df = pd.read_csv("../Data/Bayes_emotion_df.csv")
 
     bf = BayesianFilter()
     for i in range(len(emotion_df)):
