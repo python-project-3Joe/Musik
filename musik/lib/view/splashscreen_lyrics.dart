@@ -3,16 +3,16 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:async';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:musik/view/emotional_alnalysis.dart';
+import 'package:musik/view/emotional_lyrics.dart';
 
-class Splashscreen1 extends StatefulWidget {
-  const Splashscreen1({Key? key}) : super(key: key);
+class Splashscreen2 extends StatefulWidget {
+  const Splashscreen2({Key? key}) : super(key: key);
 
   @override
-  State<Splashscreen1> createState() => _Splashscreen1State();
+  State<Splashscreen2> createState() => _Splashscreen2State();
 }
 
-class _Splashscreen1State extends State<Splashscreen1> {
+class _Splashscreen2State extends State<Splashscreen2> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,12 +22,12 @@ class _Splashscreen1State extends State<Splashscreen1> {
       ),
       home: AnimatedSplashScreen(
           // 스플래쉬
-          splash: 'images/diary_splashscreen.gif',
+          splash: 'images/lyrics_splashscreen.gif',
           splashIconSize: 1500,
           duration: 3000,
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.black,
-          nextScreen: const EmotionalAnalysis())
+          nextScreen: const EmotionalLyrics())
           );
   }
 }
