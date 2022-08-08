@@ -186,21 +186,18 @@ class _CalendarState extends State<Calendar> {
                                           padding: const EdgeInsets.all(12.0),
                                           child: Row(
                                             children: [
-                                              CircleAvatar(
-                                                backgroundImage: AssetImage(
-                                                    diaryList[index]
-                                                        ['d_emoji']),
-                                                radius: 30,
-                                              ),
+                                              // CircleAvatar(
+                                              //   backgroundImage: AssetImage(
+                                              //       diaryList[index]
+                                              //           ['d_emoji']),
+                                              //   radius: 30,
+                                              // ),
                                               SizedBox(
                                                 width: 250,
                                                 child: Column(
                                                   children: [
                                                     Text(
-                                                      diaryList[index][
-                                                                      'd_content']
-                                                                  .length >
-                                                              13
+                                                      diaryList[index]['d_content'].length > 13
                                                           ? '${diaryList[index]['d_content'].substring(0, 13)}...'
                                                           : diaryList[index]
                                                               ['d_content'],
@@ -249,7 +246,7 @@ class _CalendarState extends State<Calendar> {
   Future<bool> getJSONData() async {
     diaryList = []; // 초기화
     var url = Uri.parse(
-        'http://172.30.1.17:8080/Flutter/musik/daily_list_flutter.jsp?uid=$uId');
+        'http://localhost:8080/Flutter/musik/daily_list_flutter.jsp?uid=$uId');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =

@@ -242,7 +242,7 @@ class _DiaryAddState extends State<DiaryAdd> {
               onPressed: () {
                   dtitle = titleEdit.text;
                   dcontent = contentEdit.text;
-                  //insertAction();
+                  insertAction();
                   getJSONData();// 데이터저장
               },
               child: const Text(
