@@ -29,6 +29,12 @@ class _SelectEmotionState extends State<SelectEmotion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Emotion'),
+        backgroundColor: Colors.grey[100],
+        foregroundColor: Colors.brown,
+        elevation: 0,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -168,11 +168,36 @@ class _CalendarState extends State<Calendar> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.brown),
                                 ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(diaryList[index]['d_title']),
+                                    Text(
+                                        '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('${diaryList[index]['d_title']}:'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
                                     Text(diaryList[index]['d_content']),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    diaryList[index]['d_emoji'] == '기쁨'
+                                        ? Image.asset(
+                                            'images/joy.png',
+                                            width: 30,
+                                            height: 30,
+                                          )
+                                        : Image.asset(
+                                            'images/sad.png',
+                                            width: 30,
+                                            height: 30,
+                                          )
                                   ],
                                 ),
                               ],

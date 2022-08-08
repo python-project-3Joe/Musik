@@ -49,7 +49,7 @@ class _DiaryAddState extends State<DiaryAdd> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('My Mood'),
+        title: const Text('My Emotion'),
         backgroundColor: Colors.grey[100],
         foregroundColor: Colors.brown,
         elevation: 0,
