@@ -14,6 +14,7 @@ import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
 import 'package:musik/view/select_emotion.dart';
 import 'package:musik/view/splashscreen_diary.dart';
+import 'package:musik/view/splashscreen_lyrics.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -63,6 +64,9 @@ class MyApp extends StatelessWidget {
 
         // 작사 감정 선택
         '/selectEmotion': (context) => const SelectEmotion(),
+
+         // diary 감정분석 스플래시 화면
+        '/Splashscreen_lyrics':(context) => const Splashscreen2(),
 
         // 작사 페이지
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
