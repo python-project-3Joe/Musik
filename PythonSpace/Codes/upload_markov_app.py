@@ -60,7 +60,7 @@ def markov():
                 except:
                     continue
                 # if w3 == ".": break
-                if len(ret) >= 200: break
+                if len(ret) >= 100: break
                 w1, w2 = w2, w3
             ret = "".join(ret)
             # 띄어쓰기
@@ -130,7 +130,7 @@ def markov():
                 except:
                     continue
                 # if w3 == ".": break
-                if len(ret) >= 200: break
+                if len(ret) >= 100: break
                 w1, w2 = w2, w3
             ret = "".join(ret)
             # 띄어쓰기
@@ -200,7 +200,7 @@ def markov():
                 except:
                     continue
                 # if w3 == ".": break
-                if len(ret) >= 200: break
+                if len(ret) >= 100: break
                 w1, w2 = w2, w3
             ret = "".join(ret)
             # 띄어쓰기

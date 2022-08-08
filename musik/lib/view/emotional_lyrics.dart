@@ -13,6 +13,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
   late String lyrics_result;
   late String images;
   late String emotion_name;
+  late String color;
 
   @override
   void initState() {
@@ -22,18 +23,24 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
     // 유저가 선택한 감정
     emotion = lyrics.emotion;
     // 작사 결과값
-    lyrics_result = lyrics.lyric;
+    lyrics_result = "";
+
+    color = "";
 
     setState(() {
+      lyrics_result = lyrics.lyric;
       if (emotion == 'happy') {
         emotion_name = '행복';
         images = "images/joy.png";
+        color = 'red';
       } else if (emotion == 'sad') {
         emotion_name = '슬픔';
+        color = 'blue';
         images = "images/sad.png";
       } else {
         emotion_name = '무무';
         images = "images/dumdum.png";
+        color = "amber";
       }
     });
   }
@@ -64,10 +71,13 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
                 Text(
                   "$emotion_name",
                   style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 18,
-                    color: Color.fromARGB(255, 252, 199, 9),
-                  ),
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18,
+                      color: emotion_name == "행복"
+                          ? Colors.red
+                          : emotion_name == '슬픔'
+                              ? Colors.blue
+                              : Colors.amber),
                 ),
                 const Text(
                   '의 감정으로 만들었어요',
@@ -81,7 +91,13 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
             const SizedBox(
               height: 15,
             ),
-            Text(lyrics_result),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(35, 5, 35, 0),
+              child: Text(
+                "$lyrics_result.",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
             const SizedBox(
               height: 25,
             ),
