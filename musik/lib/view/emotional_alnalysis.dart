@@ -13,13 +13,15 @@ class EmotionalAnalysis extends StatefulWidget {
 }
 
 class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
-
   late String result;
   late double negative;
   late double neutral;
   late double positive;
   late String uid;
   late String dtitle;
+  late Map<String, double> dataMap;
+  late String images;
+
   @override
   void initState() {
     super.initState();
@@ -29,30 +31,30 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
     neutral = double.parse(diary.neutral);
     positive = double.parse(diary.positive);
     uid = User.uId;
+    Map<String, double> dataMap = {};
 
     // setState(() {
-    // Map<String, double> dataMap = {
-    //   "기쁨": positive,
-    //   "무관심": neutral,
-    //   "슬픔": negative,
-    // };
+
     // });
     setState(() {
       if (result == "positive") {
         result = "기쁨";
+        images = "images/joy.png";
       } else if (result == "neutral") {
         result = "무관심";
+        images = "images/dumdum.png";
       } else {
         result = "슬픔";
+        images = "images/sad.png";
       }
     });
   }
-  
-  Map<String, double> dataMap = {
-    "기쁨": 50.0,
-    "무관심": 25.1,
-    "슬픔": 24.9,
-  };
+
+  // Map<String, double> dataMap = {
+  //   "기쁨": 50.0,
+  //   "무관심": 25.1,
+  //   "슬픔": 24.9,
+  // };
 
   final colorList = <Color>[
     Color.fromARGB(255, 214, 69, 58),
@@ -63,7 +65,6 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('감정 분석 결과'),
@@ -94,7 +95,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
             Column(
               children: [
                 Image.asset(
-                  'images/joy.png',
+                  images,
                   width: 100,
                   height: 90,
                 ),
@@ -114,10 +115,9 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                     Text(
                       '$dtitle',
                       style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 5, 152, 0)
-                      ),
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 5, 152, 0)),
                     ),
                     Text(
                       ' "의 일기 감정은',
@@ -139,7 +139,11 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 20,
-                        color: result == "기쁨" ? Color.fromARGB(255, 214, 69, 58) : result == "무관심" ? Color.fromARGB(255, 252, 199, 9) : Colors.blueAccent,
+                        color: result == "기쁨"
+                            ? Color.fromARGB(255, 214, 69, 58)
+                            : result == "무관심"
+                                ? Color.fromARGB(255, 252, 199, 9)
+                                : Colors.blueAccent,
                       ),
                     ),
                     Text(
@@ -157,7 +161,11 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
               height: 50,
             ),
             PieChart(
-              dataMap: dataMap,
+              dataMap: dataMap = {
+                "기쁨": double.parse(diary.positive),
+                "무관심": double.parse(diary.neutral),
+                "슬픔": double.parse(diary.negative),
+              },
               animationDuration: Duration(milliseconds: 900),
               chartLegendSpacing: 32,
               chartRadius: MediaQuery.of(context).size.width / 3.2,

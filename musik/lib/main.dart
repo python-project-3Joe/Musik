@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         '/diaryadd': (context) => const DiaryAdd(),
 
         // diary 감정분석 스플래시 화면
-        '/Splashscreen_diary':(context) => const Splashscreen1(),
+        '/Splashscreen_diary': (context) => const Splashscreen1(),
 
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      // initialRoute: '/emotional_analysis',
+      initialRoute: '/diaryadd',
       debugShowCheckedModeBanner: false,
     );
   }
