@@ -133,9 +133,9 @@ class _CalendarState extends State<Calendar> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [
                           Text(
-                            '   작성된 일기가 없습니다. \n일기를 작성해 주세요!',
+                            '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
                             style: TextStyle(
-                                color: Colors.yellowAccent,
+                                color: Colors.amber,
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold),
                           )
@@ -168,11 +168,36 @@ class _CalendarState extends State<Calendar> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.brown),
                                 ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(diaryList[index]['d_title']),
+                                    Text(
+                                        '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('${diaryList[index]['d_title']}:'),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
                                     Text(diaryList[index]['d_content']),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    diaryList[index]['d_emoji'] == '기쁨'
+                                        ? Image.asset(
+                                            'images/joy.png',
+                                            width: 30,
+                                            height: 30,
+                                          )
+                                        : Image.asset(
+                                            'images/sad.png',
+                                            width: 30,
+                                            height: 30,
+                                          )
                                   ],
                                 ),
                               ],
@@ -203,7 +228,6 @@ class _CalendarState extends State<Calendar> {
       diaryList.addAll(result);
     });
     print(diaryList);
-
     return true;
   }
 }

@@ -29,6 +29,12 @@ class _SelectEmotionState extends State<SelectEmotion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Emotion'),
+        backgroundColor: Colors.grey[100],
+        foregroundColor: Colors.brown,
+        elevation: 0,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -172,6 +178,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
               onPressed: () {
                 emotion;
                 getJSONData();
+                Navigator.pushNamed(context, '/Splashscreen_lyrics');
               },
               child: const Text(
                 '작사 시작',
@@ -199,10 +206,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
       lyrics.emotion = emotion;
       print(result);
       lyrics.lyric = result;
-    });
-    Timer(Duration(seconds: 2), () {
-      Navigator.pop(context);
-      Navigator.pushNamed(context, '/emotionalLyrics');
+      
     });
   }
 }// end
