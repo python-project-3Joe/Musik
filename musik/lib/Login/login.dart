@@ -246,7 +246,9 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const MainTabPage(); // Map으로 보내
+              return MainTabPage(
+                user: users[0],
+              ); // Map으로 보내
             },
           ),
         ); // 로그인 성공 리스트 화면으로 이동

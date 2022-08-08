@@ -7,7 +7,8 @@ import 'package:musik/view/mypage.dart';
 import 'package:musik/view/select_emotion.dart';
 
 class MainTabPage extends StatefulWidget {
-  const MainTabPage({Key? key}) : super(key: key);
+  final Map user;
+  const MainTabPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<MainTabPage> createState() => _MainTabPageState();
@@ -36,6 +37,27 @@ class _MainTabPageState extends State<MainTabPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+            appBar: AppBar(
+        title: const Text('Musik'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return MyPage(users: widget.user);
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.settings),
+            color: Colors.deepPurple,
+          )
+        ],
+      ),
       body: Center(
         child: TabBarView(
           controller: controller,

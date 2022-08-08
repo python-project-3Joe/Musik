@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
 
         // tabbar 페이지
-        '/tabbar': (context) => const MainTabPage(),
+        //'/tabbar': (context) => const MainTabPage(),
       },
       debugShowCheckedModeBanner: false,
     );
