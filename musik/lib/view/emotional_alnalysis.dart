@@ -226,7 +226,8 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                       ),
                     ),
                     onPressed: () {
-                      //
+                      
+                      Navigator.pushNamed(context, '/selectEmotion');
                     },
                     child: const Text(
                       '뮤식이의 AI 작사',
