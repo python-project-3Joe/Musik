@@ -257,7 +257,7 @@ class _CalendarState extends State<Calendar> {
     setState(() {
       diaryList.addAll(result);
     });
-
+    print(diaryList);
     return true;
   }
 }
