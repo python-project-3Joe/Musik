@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final _authentication = FirebaseAuth.instance;
+
   // Property
   late TextEditingController idController;
   late TextEditingController pwController;
@@ -87,6 +90,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextField(
                             controller: idController,
+                            onChanged: (value) {
+                              id = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: 'ID 를 입력하세요',
                               labelStyle: TextStyle(
@@ -158,6 +164,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextFormField(
                             controller: pwController,
+                            onChanged: (value) {
+                              pw = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: '특수,대소문자,숫자 포함 8~15자이내로 입력',
                               labelStyle: TextStyle(
@@ -192,6 +201,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextField(
                             controller: nameController,
+                            onChanged: (value) {
+                              name = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: '성함을 입력하세요',
                               labelStyle: TextStyle(
@@ -225,6 +237,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextFormField(
                             controller: emailController,
+                            onChanged: (value) {
+                              email = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: 'email 형식으로 입력하세요',
                               labelStyle: TextStyle(
@@ -247,7 +262,20 @@ class _SignUpState extends State<SignUp> {
                     height: 40,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        try {
+                          final newUser = await _authentication
+                              .createUserWithEmailAndPassword(
+                                  email: email, password: pw);
+                        } catch (e) {
+                          print(e);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('이메일과 비밀번호를 확인해주세요!'),
+                            ),
+                          );
+                        }
+
                         id = idController.text;
                         pw = pwController.text;
                         name = nameController.text;
