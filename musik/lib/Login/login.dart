@@ -240,6 +240,7 @@ class _LoginPageState extends State<LoginPage> {
         // print(users); // 결과 확인용
         User.uId = id;
         User.uNickname = users[0]['u_nickname'];
+        print(User.uId);
         Navigator.pop(context);
         Navigator.push(
           context,
