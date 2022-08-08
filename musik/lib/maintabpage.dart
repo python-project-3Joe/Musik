@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:musik/userMessage.dart';
 import 'package:musik/view/calendar.dart';
 import 'package:musik/view/diaryhome.dart';
-import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/music.dart';
 import 'package:musik/view/mypage.dart';
+import 'package:musik/view/select_emotion.dart';
 
 class MainTabPage extends StatefulWidget {
   const MainTabPage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _MainTabPageState extends State<MainTabPage>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 5, vsync: this);
+    controller = TabController(length: 4, vsync: this);
     uId = User.uId;
   }
 
@@ -45,11 +45,11 @@ class _MainTabPageState extends State<MainTabPage>
             // 달력 페이지
             Calendar(),
             // 다이어리 기록
-            DiaryList(),
+            SelectEmotion(),
             // 음악 플레이리스트
             Music(),
             // 마이페이지
-            MyPage()
+            // MyPage()
           ],
         ),
       ),
@@ -59,46 +59,42 @@ class _MainTabPageState extends State<MainTabPage>
           //
         },
         controller: controller,
-        labelColor: Colors.deepPurple,
+        labelColor: Colors.amber,
         labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        indicatorColor: Colors.indigo,
-        unselectedLabelColor: Colors.black,
-        tabs: [
+        indicatorColor:  Colors.amber,
+        unselectedLabelColor: Colors.grey,
+        tabs: const [
           Tab(
             icon: Icon(
               Icons.home_rounded,
-              color: controller.index == 0 ? Colors.deepPurple : Colors.black,
             ),
             text: "Home",
           ),
           Tab(
             icon: Icon(
               Icons.calendar_month_rounded,
-              color: controller.index == 1 ? Colors.deepPurple : Colors.black,
             ),
             text: "Calendar",
           ),
           Tab(
             icon: Icon(
-              Icons.notes_rounded,
-              color: controller.index == 2 ? Colors.deepPurple : Colors.black,
-            ),
-            text: "Record",
-          ),
-          Tab(
-            icon: Icon(
               Icons.music_note_rounded,
-              color: controller.index == 2 ? Colors.deepPurple : Colors.black,
             ),
-            text: "Music",
+            text: "AI music",
           ),
           Tab(
             icon: Icon(
-              Icons.settings_outlined,
-              color: controller.index == 2 ? Colors.deepPurple : Colors.black,
+              Icons.notes_rounded,
             ),
-            text: "Setting",
+            text: "PlayList",
           ),
+          // Tab(
+          //   icon: Icon(
+          //     Icons.settings_outlined,
+          //     color: controller.index == 2 ? Colors.deepPurple : Colors.black,
+          //   ),
+          //   text: "Setting",
+          // ),
         ],
       ),
     );

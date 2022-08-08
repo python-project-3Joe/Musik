@@ -126,22 +126,22 @@ class _DiaryListState extends State<DiaryList> {
                                   padding: const EdgeInsets.all(12.0),
                                   child: Row(
                                     children: [
-                                      CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                            diaryList[index]['epath']),
-                                        radius: 30,
-                                      ),
+                                      // CircleAvatar(
+                                      //   backgroundImage: AssetImage(
+                                      //       diaryList[index]['epath']),
+                                      //   radius: 30,
+                                      // ),
                                       SizedBox(
                                         width: 250,
                                         child: Column(
                                           children: [
                                             Text(
-                                              diaryList[index]['dcontent']
+                                              diaryList[index]['d_content']
                                                           .length >
                                                       13
-                                                  ? '${diaryList[index]['dcontent'].substring(0, 13)}...'
+                                                  ? '${diaryList[index]['d_content'].substring(0, 13)}...'
                                                   : diaryList[index]
-                                                      ['dcontent'],
+                                                      ['d_content'],
                                               style: const TextStyle(
                                                   fontSize: 17,
                                                   color: Colors.black87),
@@ -151,7 +151,7 @@ class _DiaryListState extends State<DiaryList> {
                                                   MainAxisAlignment.end,
                                               children: [
                                                 Text(
-                                                  '${diaryList[index]['ddate'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
+                                                  '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['ddate'].substring(8, 10)}일',
                                                   style: const TextStyle(
                                                       fontSize: 12,
                                                       color: Colors.brown),
@@ -295,7 +295,7 @@ class _DiaryListState extends State<DiaryList> {
     setState(() {
       diaryList.addAll(result);
     });
-    
+
     return true;
   }
 }
