@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:musik/diaryMessage.dart';
+import 'package:musik/userMessage.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class EmotionalAnalysis extends StatefulWidget {
@@ -9,11 +13,45 @@ class EmotionalAnalysis extends StatefulWidget {
 }
 
 class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
-  // Property
+
+  late String result;
+  late double negative;
+  late double neutral;
+  late double positive;
+  late String uid;
+  late String dtitle;
+  @override
+  void initState() {
+    super.initState();
+    dtitle = diary.dtitle;
+    result = diary.result;
+    negative = double.parse(diary.negative);
+    neutral = double.parse(diary.neutral);
+    positive = double.parse(diary.positive);
+    uid = User.uId;
+
+    // setState(() {
+    // Map<String, double> dataMap = {
+    //   "기쁨": positive,
+    //   "무관심": neutral,
+    //   "슬픔": negative,
+    // };
+    // });
+    setState(() {
+      if (result == "positive") {
+        result = "기쁨";
+      } else if (result == "neutral") {
+        result = "무관심";
+      } else {
+        result = "슬픔";
+      }
+    });
+  }
+  
   Map<String, double> dataMap = {
-    "기쁨": 70,
-    "무관심": 20,
-    "슬픔": 10,
+    "기쁨": 50.0,
+    "무관심": 25.1,
+    "슬픔": 24.9,
   };
 
   final colorList = <Color>[
@@ -25,6 +63,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('감정 분석 결과'),
@@ -64,17 +103,24 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
-                      '감기에 걸린 날',
+                      '" ',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 18,
-                        color: Color.fromARGB(255, 252, 199, 9),
                       ),
                     ),
                     Text(
-                      '의 감정은',
+                      '$dtitle',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 5, 152, 0)
+                      ),
+                    ),
+                    Text(
+                      ' "의 일기 감정은',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 18,
@@ -87,16 +133,17 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
-                      '기쁨',
+                      "$result",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
-                        fontSize: 18,
+                        fontSize: 20,
+                        color: result == "기쁨" ? Color.fromARGB(255, 214, 69, 58) : result == "무관심" ? Color.fromARGB(255, 252, 199, 9) : Colors.blueAccent,
                       ),
                     ),
                     Text(
-                      '으로 보여져요',
+                      ' 으로 보여져요',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 18,
@@ -107,7 +154,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
               ],
             ),
             const SizedBox(
-              height: 30,
+              height: 50,
             ),
             PieChart(
               dataMap: dataMap,
@@ -164,7 +211,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(280, 50),
+                      // fixedSize: const Size(280, 50),
                       primary: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -187,7 +234,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(280, 50),
+                      // fixedSize: const Size(280, 50),
                       primary: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),

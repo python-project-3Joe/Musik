@@ -243,6 +243,7 @@ class _DiaryAddState extends State<DiaryAdd> {
               dtitle = titleEdit.text;
               dcontent = contentEdit.text;
               //insertAction();
+               Navigator.pushNamed(context, '/Splashscreen_diary');
               getJSONData(); // 데이터저장
             },
             child: const Text(
@@ -289,7 +290,8 @@ class _DiaryAddState extends State<DiaryAdd> {
       print(positive);
       print(neutral);
       print(negative);
-
+      
+      diary.dtitle = dtitle;
       diary.result = result;
       diary.positive = positive;
       diary.neutral = neutral;

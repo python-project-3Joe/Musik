@@ -13,6 +13,7 @@ import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
 import 'package:musik/view/select_emotion.dart';
+import 'package:musik/view/splashscreen_diary.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
 
         // diary 추가
         '/diaryadd': (context) => const DiaryAdd(),
+
+        // diary 감정분석 스플래시 화면
+        '/Splashscreen_diary':(context) => const Splashscreen1(),
 
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
