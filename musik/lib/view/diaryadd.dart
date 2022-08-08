@@ -242,7 +242,7 @@ class _DiaryAddState extends State<DiaryAdd> {
             onPressed: () {
               dtitle = titleEdit.text;
               dcontent = contentEdit.text;
-              //insertAction();
+              insertAction();
               getJSONData(); // 데이터저장
             },
             child: const Text(
@@ -276,7 +276,7 @@ class _DiaryAddState extends State<DiaryAdd> {
 
 // 일기 문장을 가지고 upload_bayes_app.py로 들어가게 됨
   void getJSONData() async {
-    var url = Uri.parse('http://127.0.0.1:5000/bayes?diary=$dcontent');
+    var url = Uri.parse('http://localhost:5000/bayes?diary=$dcontent');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

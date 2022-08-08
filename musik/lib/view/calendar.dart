@@ -28,12 +28,12 @@ class _CalendarState extends State<Calendar> {
   void initState() {
     super.initState();
 
-    uId = "aaa";
-    uNickname = "가슬";
+    // uId = "aaa";
+    // uNickname = "가슬";
+    uId = User.uId;
+    uNickname = User.uNickname;
     diaryList = [];
     getJSONData();
-    // uId = User.uId;
-    // uNickname = User.uNickname;
   }
 
   @override
@@ -142,6 +142,7 @@ class _CalendarState extends State<Calendar> {
                         ],
                       ))
                     : ListView.builder(
+                        shrinkWrap: true,
                         itemCount: diaryList.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
@@ -158,76 +159,20 @@ class _CalendarState extends State<Calendar> {
                             },
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: index == 0 ? 40 : 10,
-                                  child: Text(
-                                    index == 0
-                                        ? '${diaryList[index]['d_date'].substring(0, 4)}년'
-                                        : '',
-                                    style: const TextStyle(
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.brown),
-                                  ),
+                                Text(
+                                  index == 0
+                                      ? '${diaryList[index]['d_date'].substring(0, 4)}년'
+                                      : '',
+                                  style: const TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.brown),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      width: 350,
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        color: Colors.brown[100],
-                                        elevation: 0,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            children: [
-                                              // CircleAvatar(
-                                              //   backgroundImage: AssetImage(
-                                              //       diaryList[index]
-                                              //           ['d_emoji']),
-                                              //   radius: 30,
-                                              // ),
-                                              SizedBox(
-                                                width: 250,
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      diaryList[index]['d_content'].length > 13
-                                                          ? '${diaryList[index]['d_content'].substring(0, 13)}...'
-                                                          : diaryList[index]
-                                                              ['d_content'],
-                                                      style: const TextStyle(
-                                                          fontSize: 17,
-                                                          color:
-                                                              Colors.black87),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        Text(
-                                                          '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일',
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize: 12,
-                                                                  color: Colors
-                                                                      .brown),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    Text(diaryList[index]['d_title']),
+                                    Text(diaryList[index]['d_content']),
                                   ],
                                 ),
                               ],
