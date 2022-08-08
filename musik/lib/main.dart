@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/diaryadd',
+      initialRoute: '/Log_in',
       debugShowCheckedModeBanner: false,
     );
   }
