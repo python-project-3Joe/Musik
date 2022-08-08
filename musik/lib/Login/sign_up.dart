@@ -266,7 +266,10 @@ class _SignUpState extends State<SignUp> {
                         try {
                           final newUser = await _authentication
                               .createUserWithEmailAndPassword(
-                                  email: email, password: pw);
+                            email: id,
+                            password: pw,
+                          );
+                          if (newUser.user != null) {}
                         } catch (e) {
                           print(e);
                           ScaffoldMessenger.of(context).showSnackBar(
