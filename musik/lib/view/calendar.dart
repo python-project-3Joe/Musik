@@ -133,9 +133,9 @@ class _CalendarState extends State<Calendar> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [
                           Text(
-                            '   작성된 일기가 없습니다. \n일기를 작성해 주세요!',
+                            '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
                             style: TextStyle(
-                                color: Colors.yellowAccent,
+                                color: Colors.amber,
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold),
                           )
