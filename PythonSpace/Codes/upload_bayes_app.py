@@ -44,6 +44,7 @@ def bayes():
     result = []
     for i in range(3):
         result.append(round(test_list_result[i],1))
+    result = list(map(str, result))
 
     # 결과값(result)을 jsonify로 넘김
     return jsonify({'result' : pre, # 최종 감정의 결과값
