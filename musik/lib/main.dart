@@ -13,6 +13,8 @@ import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
 import 'package:musik/view/select_emotion.dart';
+import 'package:musik/view/splashscreen_diary.dart';
+import 'package:musik/view/splashscreen_lyrics.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -51,6 +53,9 @@ class MyApp extends StatelessWidget {
         // diary 추가
         '/diaryadd': (context) => const DiaryAdd(),
 
+        // diary 감정분석 스플래시 화면
+        '/Splashscreen_diary': (context) => const Splashscreen1(),
+
         // diary 리스트
         '/diarylist': (context) => const DiaryList(),
 
@@ -60,13 +65,16 @@ class MyApp extends StatelessWidget {
         // 작사 감정 선택
         '/selectEmotion': (context) => const SelectEmotion(),
 
+         // diary 감정분석 스플래시 화면
+        '/Splashscreen_lyrics':(context) => const Splashscreen2(),
+
         // 작사 페이지
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
 
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      // initialRoute: '/emotional_analysis',
+      initialRoute: '/diaryadd',
       debugShowCheckedModeBanner: false,
     );
   }
