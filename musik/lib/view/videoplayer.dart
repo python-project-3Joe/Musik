@@ -15,13 +15,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late Future<void> _initializeVideoPlayerFuture;
   @override
   void initState(){
-    super.initState();
-
     _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
+        // 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
+        'https://www.youtube.com/embed/h7pDGP1XjZM',
     );
     _initializeVideoPlayerFuture = _controller.initialize();
     _controller.setLooping(true);
+
+     super.initState();
   }
 
   @override
