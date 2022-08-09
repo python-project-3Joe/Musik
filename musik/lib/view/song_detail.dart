@@ -11,17 +11,18 @@ class SongDetail extends StatefulWidget {
 class _SongDetailState extends State<SongDetail> {
   late YoutubePlayerController controller; // youtube player controller
 
-  late String songname;
-  late String singer;
-  late String date;
-  late String lyrics;
-
+  late String songname; // 노래제목
+  late String singer; // 가수
+  late String date; // 발매일
+  late String lyrics; //가사
+  late String image; //앨범사진
   @override
   void initState() {
     songname = "";
     singer = "";
     date = "";
     lyrics = "";
+    image = "";
     super.initState();
 
     const url = 'https://youtu.be/h7pDGP1XjZM';
@@ -50,7 +51,10 @@ class _SongDetailState extends State<SongDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("$songname")),
+      appBar: AppBar(
+        title: Text("$songname"),
+        backgroundColor: Colors.white,
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -73,7 +77,7 @@ class _SongDetailState extends State<SongDetail> {
                             children: [
                               Image.network(
                                 // 이미지 url
-                                "https://cdnimg.melon.co.kr/cm2/album/images/108/16/959/10816959_20211217144957_500.jpg?c1818ddc493cb2bbb4d268431e6de7b5/melon/resize/282/quality/80/optimize",
+                                "$image",
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.fill,
@@ -111,7 +115,7 @@ class _SongDetailState extends State<SongDetail> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     Card(
@@ -132,7 +136,7 @@ class _SongDetailState extends State<SongDetail> {
                             children: [
                               Text(
                                 '$lyrics',
-                                style: TextStyle(fontSize: 15),
+                                style: const TextStyle(fontSize: 15),
                               )
                             ],
                           ),
