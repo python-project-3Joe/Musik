@@ -77,12 +77,10 @@ class MyApp extends StatelessWidget {
         '/playlist': (context) => const Playlist(),
 
         // '/songDetail': (context) => const SongDetail(),
-
         // tabbar 페이지
         //'/tabbar': (context) => const MainTabPage(),
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: '/songDetail',
     );
   }
 }
