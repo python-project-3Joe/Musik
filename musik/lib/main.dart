@@ -12,6 +12,7 @@ import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
+import 'package:musik/view/playlist.dart';
 import 'package:musik/view/select_emotion.dart';
 import 'package:musik/view/splashscreen_diary.dart';
 import 'package:musik/view/splashscreen_lyrics.dart';
@@ -70,6 +71,9 @@ class MyApp extends StatelessWidget {
 
         // 작사 페이지
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
+
+        // music playlist 페이지
+        '/playlist': (context) => const Playlist(),
 
         // tabbar 페이지
         //'/tabbar': (context) => const MainTabPage(),

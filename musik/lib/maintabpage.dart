@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:musik/userMessage.dart';
 import 'package:musik/view/calendar.dart';
 import 'package:musik/view/diaryhome.dart';
-import 'package:musik/view/music.dart';
 import 'package:musik/view/mypage.dart';
+import 'package:musik/view/playlist.dart';
 import 'package:musik/view/select_emotion.dart';
 
 class MainTabPage extends StatefulWidget {
@@ -69,7 +69,7 @@ class _MainTabPageState extends State<MainTabPage>
             // 다이어리 기록
             SelectEmotion(),
             // 음악 플레이리스트
-            Music(),
+            Playlist(),
             // 마이페이지
             // MyPage()
           ],
