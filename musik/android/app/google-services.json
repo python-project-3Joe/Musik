@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "187538472244",
+    "project_id": "musik-7126c",
+    "storage_bucket": "musik-7126c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187538472244:android:e165e37e27de86cfedf961",
+        "android_client_info": {
+          "package_name": "com.example.musik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187538472244-j1kgqft0r7ms146galgfmmvd524gl70k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHSZ8TOA0es1hEDkYEpLS138PGfBOnOY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187538472244-j1kgqft0r7ms146galgfmmvd524gl70k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "187538472244-ci3kj07230rm2lud5i14jamp7am550cn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.musik"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,7 +21,8 @@ class _CalendarState extends State<Calendar> {
 
   late String uId;
   late String uNickname;
-
+  late String result;
+  late String dId;
   late List diaryList;
 
   @override
@@ -39,195 +40,233 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       // appBar: AppBar(
       //   title: Text('$uNickname 님\n 감정 캘린더'),
       // ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
-        
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$uNickname 님',
-                      style: const TextStyle(
-                          color: Colors.amber,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w900),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      '감정 캘린더',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
-                    ),
-                  ],
-                ),
-              ),
-              //calendar
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 400,
-                    width: 350,
-                    child: TableCalendar(
-                      locale: 'ko-KR',
-                      firstDay: DateTime(1990),
-                      lastDay: DateTime(2050),
-                      focusedDay: selectedDay,
-                      calendarFormat: _calendarFormat,
-                      onFormatChanged: (CalendarFormat format) {
-                        setState(() {
-                          _calendarFormat = format;
-                        });
-                      },
-
-                      // Day Changed
-                      onDaySelected: (DateTime selectDay, DateTime focusDay) {
-                        setState(() {
-                          selectedDay = selectDay;
-                          focusedDay =
-                              focusDay; // update `_focusedDay` here as well
-                          // cDate = selectedDay.toString().substring(0, 10);
-                        });
-                        // getJSONData();
-                      },
-
-                      selectedDayPredicate: (DateTime day) {
-                        return isSameDay(selectedDay, day);
-                      },
-
-                      eventLoader: (day) {
-                        List dot = [];
-
-                        for (int i = 0; i < diaryList.length; i++) {
-                          if (diaryList.isNotEmpty) {
-                            if (day.toString().substring(0, 10) ==
-                                diaryList[i]['d_date']) {
-                              dot.add(true);
-                            }
-                          }
-                        }
-                        // for (int a = 0; a < allAnalysisData.length; a++) {
-                        //   if (allAnalysisData.isNotEmpty) {
-                        //     if (day.toString().substring(0, 10) ==
-                        //         allAnalysisData[a]['bDate']) {
-                        //       dot.add(true);
-                        //     }
-                        //   }
-                        // }
-                        return dot;
-                      },
-
-                      // Calendar Style
-                      calendarStyle: CalendarStyle(
-                        selectedDecoration: BoxDecoration(
-                          color: Colors.purple.shade100,
-                          shape: BoxShape.rectangle,
-                        ),
-                        todayDecoration: const BoxDecoration(
-                          color: Color.fromARGB(178, 186, 104, 200),
-                          shape: BoxShape.circle,
+                  Row(
+                    children: [
+                      Text(
+                        uNickname,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 247, 201, 32),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      headerStyle: const HeaderStyle(
-                        formatButtonShowsNext: false,
+                      const Text(
+                        '님',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                    ],
+                  ),
+                  const Text(
+                    '감정 캘린더',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              Center(
-                child: diaryList.isEmpty
-                    ? Center(
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Text(
-                            '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
-                            style: TextStyle(
-                                color: Colors.amber,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ))
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: diaryList.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) {
-                                    return DiaryContent(
-                                        diaryList:
-                                            diaryList[index]); // Map으로 보내
-                                  },
-                                )).then((value) => getJSONData());
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                // Text(
-                                //   index == 0
-                                //       ? '${diaryList[index]['d_date'].substring(0, 4)}년'
-                                //       : '',
-                                //   style: const TextStyle(
-                                //       fontSize: 26,
-                                //       fontWeight: FontWeight.bold,
-                                //       color: Colors.brown),
-                                // ),
-                                // const SizedBox(
-                                //   height: 15,
-                                // ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('${diaryList[index]['d_title']}:'),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(diaryList[index]['d_content'], ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      diaryList[index]['d_emoji'] == '기쁨'
-                                          ? Image.asset(
-                                              'images/joy.png',
-                                              width: 30,
-                                              height: 30,
-                                            )
-                                          : Image.asset(
-                                              'images/sad.png',
-                                              width: 30,
-                                              height: 30,
-                                            )
-                                    ],
+            ),
+            //calendar
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TableCalendar(
+                    locale: 'ko-KR',
+                    firstDay: DateTime(1990),
+                    lastDay: DateTime(2050),
+                    focusedDay: selectedDay,
+                    calendarFormat: _calendarFormat,
+                    onFormatChanged: (CalendarFormat format) {
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    },
+
+                    // Day Changed
+                    onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                      setState(() {
+                        selectedDay = selectDay;
+                        focusedDay =
+                            focusDay; // update `_focusedDay` here as well
+                        // cDate = selectedDay.toString().substring(0, 10);
+                      });
+                      // getJSONData();
+                    },
+
+                    selectedDayPredicate: (DateTime day) {
+                      return isSameDay(selectedDay, day);
+                    },
+
+                    eventLoader: (day) {
+                      List dot = [];
+
+                      for (int i = 0; i < diaryList.length; i++) {
+                        if (diaryList.isNotEmpty) {
+                          if (day.toString().substring(0, 10) ==
+                              diaryList[i]['d_date']
+                                  .toString()
+                                  .substring(0, 10)) {
+                            dot.add(true);
+                          }
+                        }
+                      }
+                      // for (int a = 0; a < allAnalysisData.length; a++) {
+                      //   if (allAnalysisData.isNotEmpty) {
+                      //     if (day.toString().substring(0, 10) ==
+                      //         allAnalysisData[a]['bDate']) {
+                      //       dot.add(true);
+                      //     }
+                      //   }
+                      // }
+                      return dot;
+                    },
+
+                    // Calendar Style
+                    calendarStyle: const CalendarStyle(
+                      selectedDecoration: BoxDecoration(
+                        color: Colors.amberAccent,
+                        shape: BoxShape.rectangle,
+                      ),
+                      todayDecoration: BoxDecoration(
+                        color: Color.fromARGB(137, 255, 214, 64),
+                        shape: BoxShape.rectangle,
+                      ),
+                    ),
+                    headerStyle: const HeaderStyle(
+                      formatButtonShowsNext: false,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Center(
+              child: diaryList.isEmpty
+                  ? Center(
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text(
+                          '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ))
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: diaryList.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          //calenderDelete
+                          onLongPress: () {
+                            dId = diaryList[index]['d_id'].toString();
+                            deleteShowDialog(context);
+                          },
+                          // onTap: () {
+                          //   setState(() {
+                          //     Navigator.push(context, MaterialPageRoute(
+                          //       builder: (context) {
+                          //         return DiaryContent(
+                          //             diaryList: diaryList[index]); // Map으로 보내
+                          //       },
+                          //     )).then((value) => getJSONData());
+                          //   });
+                          // },
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                            child: Container(
+                              width: 200,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey
+                                        .withOpacity(0.4), //color of shadow
+                                    spreadRadius: 2, //spread radius
+                                    blurRadius: 2, // blur radius
+                                    offset: const Offset(
+                                        0, 1), // changes position of shadow
+                                    //first paramerter of offset is left-right
+                                    //second parameter is top to down
                                   ),
-                                ),
-                              ],
+                                  //you can set more BoxShadow() here
+                                ],
+                              ),
+                              margin: const EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(17, 0, 15, 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          '${diaryList[index]['d_title']}:',
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          diaryList[index]['d_content'],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        diaryList[index]['d_emoji'] == '기쁨'
+                                            ? Image.asset(
+                                                'images/joy.png',
+                                                width: 30,
+                                                height: 30,
+                                              )
+                                            : Image.asset(
+                                                'images/sad.png',
+                                                width: 30,
+                                                height: 30,
+                                              )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          );
-                        }),
-              ),
-            ],
-          ),
+                          ),
+                        );
+                      }),
+            ),
+          ],
         ),
       ),
     );
@@ -250,5 +289,57 @@ class _CalendarState extends State<Calendar> {
     });
     print(diaryList);
     return true;
+  }
+
+  deleteAction() async {
+    var url = Uri.parse(
+        "http://localhost:8080/Flutter/musik/daily_delete.jsp?did=$dId");
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+
+      if (result == 'OK') {
+        getJSONData();
+        Navigator.pop(context);
+      } else {
+        errorSnackBar(context);
+      }
+    });
+  }
+
+  deleteShowDialog(BuildContext ctx) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Text('삭제'),
+            content: const Text('정말로 삭제하시겠습니까?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('아니오'),
+              ),
+              TextButton(
+                onPressed: () {
+                  deleteAction();
+                },
+                child: const Text('예'),
+              ),
+            ],
+          );
+        });
+  }
+
+  errorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('사용자 정보 삭제에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 1),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 }
