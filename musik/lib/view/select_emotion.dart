@@ -31,15 +31,17 @@ class _SelectEmotionState extends State<SelectEmotion> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('My Emotion'),
+        title: const Text('Music AI Lyricist'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 80,
+            ),
             const Text(
               'AI 뮤직 작사가',
               style: TextStyle(
@@ -49,7 +51,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
             const Text(
               '감정을 선택하면 뮤식이가 작사를 해드려요!',
@@ -59,7 +61,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 60,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +171,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
               ],
             ),
             const SizedBox(
-              height: 40,
+              height: 60,
             ),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
