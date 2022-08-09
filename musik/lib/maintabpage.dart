@@ -53,8 +53,8 @@ class _MainTabPageState extends State<MainTabPage>
                 ),
               );
             },
-            icon: const Icon(Icons.settings),
-            color: Colors.deepPurple,
+            icon: const Icon(Icons.person_pin),
+            color: Colors.amber,
           )
         ],
       ),
