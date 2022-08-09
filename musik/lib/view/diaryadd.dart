@@ -48,10 +48,10 @@ class _DiaryAddState extends State<DiaryAdd> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('My Emotion Diary'),
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
@@ -98,8 +98,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                                 : const TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w900
-                                  ), /*enameEdit*/
+                                    fontWeight: FontWeight.w900), /*enameEdit*/
                           ),
                         ],
                       ),
@@ -135,8 +134,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                                 : const TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w800
-                                  ), /*enameEdit*/
+                                    fontWeight: FontWeight.w800), /*enameEdit*/
                           ),
                         ],
                       ),
@@ -155,7 +153,6 @@ class _DiaryAddState extends State<DiaryAdd> {
                         children: [
                           Image.asset(
                             'images/sad.png',
-                            
                             width: emotion == '슬픔' ? 110 : 100,
                             height: emotion == '슬픔' ? 95 : 90,
                           ),
@@ -173,8 +170,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                                 : const TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w900
-                                  ), /*enameEdit*/
+                                    fontWeight: FontWeight.w900), /*enameEdit*/
                           ),
                         ],
                       ),
@@ -201,11 +197,11 @@ class _DiaryAddState extends State<DiaryAdd> {
                     decoration: InputDecoration(
                       hintText: '일기 제목을 적어주세요.',
                       hintStyle: TextStyle(
-                          color: Color.fromARGB(147, 203, 183, 70),
-                        ),
+                        color: Color.fromARGB(147, 203, 183, 70),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 2, color: Color.fromARGB(147, 203, 183, 70)),
+                        borderSide: const BorderSide(
+                            width: 2, color: Color.fromARGB(147, 203, 183, 70)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -227,11 +223,12 @@ class _DiaryAddState extends State<DiaryAdd> {
                       decoration: InputDecoration(
                         hintText: '당신의 감정을 적어주세요.',
                         hintStyle: TextStyle(
-                            color: Color.fromARGB(147, 203, 183, 70),
-                          ),
+                          color: Color.fromARGB(147, 203, 183, 70),
+                        ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 2, color: Color.fromARGB(147, 203, 183, 70)),
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromARGB(147, 203, 183, 70)),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -261,7 +258,7 @@ class _DiaryAddState extends State<DiaryAdd> {
               dtitle = titleEdit.text;
               dcontent = contentEdit.text;
               insertAction();
-              
+
               getJSONData(); // 데이터저장
             },
             child: const Text(
@@ -280,7 +277,7 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/musik/daily_add.jsp?dtitle=$dtitle&dcontent=$dcontent&demoji=$emotion&uid=$uid');
+        'http://localhost:8080/Flutter/musik/daily_add.jsp?dtitle=$dtitle&dcontent=$dcontent&demoji=$emotion&uid=1234');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -308,7 +305,7 @@ class _DiaryAddState extends State<DiaryAdd> {
       print(positive);
       print(neutral);
       print(negative);
-      
+
       diary.dtitle = dtitle;
       diary.result = result;
       diary.positive = positive;

@@ -29,9 +29,10 @@ class _SelectEmotionState extends State<SelectEmotion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('My Emotion'),
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
@@ -39,23 +40,26 @@ class _SelectEmotionState extends State<SelectEmotion> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'AI 뮤직 작사가',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
-                fontSize: 18,
+                fontSize: 25,
                 color: Color.fromARGB(255, 252, 199, 9),
-              ),
-            ),
-            const Text(
-              '감정을 선택하면 뮤식이가 작사를 해드려요',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 18,
               ),
             ),
             const SizedBox(
               height: 15,
+            ),
+            const Text(
+              '감정을 선택하면 뮤식이가 작사를 해드려요!',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +70,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/joy.png';
-                        emotion = 'happy';
+                        emotion = '기쁨';
                       });
                     },
                     child: Column(
@@ -82,9 +86,9 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '기쁨',
-                          style: emotion == 'happy'
+                          style: emotion == '기쁨'
                               ? const TextStyle(
-                                  color: Colors.green,
+                                  color: Colors.red,
                                   fontWeight: FontWeight.bold)
                               : const TextStyle(
                                   color: Colors.black,
@@ -100,7 +104,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/dumdum.png';
-                        emotion = "Indifference";
+                        emotion = '무무';
                       });
                     },
                     child: Column(
@@ -116,9 +120,9 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '무무',
-                          style: emotion == 'Indifference'
+                          style: emotion == '무무'
                               ? const TextStyle(
-                                  color: Colors.green,
+                                  color: Colors.amber,
                                   fontWeight: FontWeight.bold)
                               : const TextStyle(
                                   color: Colors.black,
@@ -134,7 +138,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/sad.png';
-                        emotion = "sad";
+                        emotion = '슬픔';
                       });
                     },
                     child: Column(
@@ -150,9 +154,9 @@ class _SelectEmotionState extends State<SelectEmotion> {
                         Text(
                           // 이미지 이름
                           '슬픔',
-                          style: emotion == 'sad'
+                          style: emotion == '슬픔'
                               ? const TextStyle(
-                                  color: Colors.green,
+                                  color: Colors.blueAccent,
                                   fontWeight: FontWeight.bold)
                               : const TextStyle(
                                   color: Colors.black,
@@ -165,14 +169,14 @@ class _SelectEmotionState extends State<SelectEmotion> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(280, 50),
+                fixedSize: const Size(210, 45),
                 primary: Colors.black,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(25),
                 ),
               ),
               onPressed: () {
@@ -180,13 +184,18 @@ class _SelectEmotionState extends State<SelectEmotion> {
                 getJSONData();
                 Navigator.pushNamed(context, '/Splashscreen_lyrics');
               },
-              child: const Text(
+              label: const Text(
                 '작사 시작',
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 22,
                 ),
+              ),
+              icon: const Icon(
+                Icons.music_note,
+                size: 25,
+                color: Colors.white,
               ),
             ),
           ],
@@ -198,7 +207,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
 // Function
 
   void getJSONData() async {
-    var url = Uri.parse('http://127.0.0.1:5000//markov?emotion=$emotion');
+    var url = Uri.parse('http://127.0.0.1:5010//markov?emotion=$emotion');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -206,7 +215,6 @@ class _SelectEmotionState extends State<SelectEmotion> {
       lyrics.emotion = emotion;
       print(result);
       lyrics.lyric = result;
-      
     });
   }
 }// end
