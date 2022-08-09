@@ -42,19 +42,37 @@ class _CalendarState extends State<Calendar> {
       // appBar: AppBar(
       //   title: Text('$uNickname 님\n 감정 캘린더'),
       // ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
+        
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('$uNickname 님'),
-                  const Text('감정 캘린더'),
-                ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '$uNickname 님',
+                      style: const TextStyle(
+                          color: Colors.amber,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '감정 캘린더',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
+                    ),
+                  ],
+                ),
               ),
               //calendar
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: 400,

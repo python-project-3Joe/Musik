@@ -54,7 +54,7 @@ class _MainTabPageState extends State<MainTabPage>
               );
             },
             icon: const Icon(Icons.settings),
-            color: Colors.deepPurple,
+            color: Colors.amber[600],
           )
         ],
       ),
@@ -81,9 +81,9 @@ class _MainTabPageState extends State<MainTabPage>
           //
         },
         controller: controller,
-        labelColor: Colors.amber,
+        labelColor: Colors.amber[600],
         labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        indicatorColor:  Colors.amber,
+        indicatorColor:  Colors.amber[600],
         unselectedLabelColor: Colors.grey,
         tabs: const [
           Tab(
