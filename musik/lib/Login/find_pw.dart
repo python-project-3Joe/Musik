@@ -49,13 +49,13 @@ class _FindPwState extends State<FindPw> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          foregroundColor: Color.fromARGB(255, 164, 154, 239),
+          foregroundColor: Colors.brown,
           title: const Text(
             "비밀번호 찾기",
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 30, 0, 65),
+              color: Colors.brown,
             ),
           ),
           toolbarHeight: 100,
@@ -77,7 +77,7 @@ class _FindPwState extends State<FindPw> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 30, 0, 65),
+                        color: Colors.orange,
                       ),
                     ),
                   ),
@@ -88,28 +88,28 @@ class _FindPwState extends State<FindPw> {
                       decoration: const InputDecoration(
                         hintText: 'Enter your ID',
                         filled: true,
-                        fillColor: Color.fromARGB(230, 231, 229, 255),
+                        fillColor: Colors.white,
                         labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 41, 152),
+                          color: Colors.brown,
                         ),
                         hintStyle: TextStyle(
-                            color: Color.fromARGB(159, 101, 71, 191),
+                            color: Colors.brown,
                             fontSize: 14),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
                           borderSide: BorderSide(
                               width: 1.8,
-                              color: Color.fromARGB(255, 61, 51, 133)),
+                              color: Colors.orange),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           borderSide: BorderSide(
                               width: 1,
-                              color: Color.fromARGB(255, 91, 80, 177)),
+                              color: Colors.orange),
                         ),
                       ),
                       keyboardType: TextInputType.text,
-                      cursorColor: Color.fromARGB(255, 113, 103, 194),
+                      cursorColor: Colors.brown,
                       onChanged: (value) {},
                     ),
                   ),
@@ -126,7 +126,7 @@ class _FindPwState extends State<FindPw> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 30, 0, 65),
+                      color: Colors.orange,
                     ),
                   ),
                 ),
@@ -137,27 +137,27 @@ class _FindPwState extends State<FindPw> {
                     decoration: const InputDecoration(
                       hintText: 'Enter your email',
                       filled: true,
-                      fillColor: Color.fromARGB(230, 231, 229, 255),
+                      fillColor: Colors.white,
                       labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 69, 41, 152),
+                        color: Colors.brown,
                       ),
                       hintStyle: TextStyle(
-                          color: Color.fromARGB(159, 101, 71, 191),
+                          color: Colors.brown,
                           fontSize: 14),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(25.0)),
                         borderSide: BorderSide(
                             width: 1.8,
-                            color: Color.fromARGB(255, 61, 51, 133)),
+                            color: Colors.orange),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
                         borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 91, 80, 177)),
+                            width: 1, color: Colors.orange),
                       ),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    cursorColor: Color.fromARGB(255, 113, 103, 194),
+                    cursorColor: Colors.brown,
                     onChanged: (value) {},
                   ),
                 ),
@@ -167,7 +167,7 @@ class _FindPwState extends State<FindPw> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 139, 128, 222),
+                  primary: Colors.amber[500],
                   minimumSize: const Size(80, 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -198,7 +198,7 @@ class _FindPwState extends State<FindPw> {
                   const Text(
                     '아직 회원이 아니신가요?',
                     style: TextStyle(
-                        color: Color.fromARGB(255, 23, 0, 60),
+                        color: Colors.black54,
                         fontSize: 13,
                         fontWeight: FontWeight.w500),
                   ),
@@ -211,7 +211,7 @@ class _FindPwState extends State<FindPw> {
                       child: const Text(
                         '회원가입 하기',
                         style: TextStyle(
-                            color: Colors.blue,
+                            color: Colors.brown,
                             fontSize: 14,
                             fontWeight: FontWeight.w600),
                       ),
