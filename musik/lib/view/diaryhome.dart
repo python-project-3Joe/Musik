@@ -28,6 +28,7 @@ class _DiaryHomeState extends State<DiaryHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
@@ -90,9 +91,9 @@ class _DiaryHomeState extends State<DiaryHome> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(200, 30),
+                        fixedSize: const Size(150, 30),
                         primary: Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -108,13 +109,18 @@ class _DiaryHomeState extends State<DiaryHome> {
                           ),
                         );
                       },
-                      child: const Text(
+                      label: const Text(
                         '기록하기',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
                           fontSize: 15,
                         ),
+                      ),
+                      icon: Icon(
+                        Icons.note_add_rounded,
+                        size: 25,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -253,9 +259,9 @@ class _DiaryHomeState extends State<DiaryHome> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(200, 30),
+                        fixedSize: const Size(150, 30),
                         primary: Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -265,13 +271,18 @@ class _DiaryHomeState extends State<DiaryHome> {
                         Navigator.pop(context);
                         Navigator.pushNamed(context, '/selectEmotion');
                       },
-                      child: const Text(
+                      label: const Text(
                         '작사 하기',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
                           fontSize: 15,
                         ),
+                      ),
+                      icon: Icon(
+                        Icons.music_note,
+                        size: 25,
+                        color: Colors.white,
                       ),
                     ),
                   ],
