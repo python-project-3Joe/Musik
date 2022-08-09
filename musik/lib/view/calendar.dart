@@ -159,46 +159,49 @@ class _CalendarState extends State<Calendar> {
                             },
                             child: Column(
                               children: [
-                                Text(
-                                  index == 0
-                                      ? '${diaryList[index]['d_date'].substring(0, 4)}년'
-                                      : '',
-                                  style: const TextStyle(
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.brown),
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                        '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text('${diaryList[index]['d_title']}:'),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(diaryList[index]['d_content']),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    diaryList[index]['d_emoji'] == '기쁨'
-                                        ? Image.asset(
-                                            'images/joy.png',
-                                            width: 30,
-                                            height: 30,
-                                          )
-                                        : Image.asset(
-                                            'images/sad.png',
-                                            width: 30,
-                                            height: 30,
-                                          )
-                                  ],
+                                // Text(
+                                //   index == 0
+                                //       ? '${diaryList[index]['d_date'].substring(0, 4)}년'
+                                //       : '',
+                                //   style: const TextStyle(
+                                //       fontSize: 26,
+                                //       fontWeight: FontWeight.bold,
+                                //       color: Colors.brown),
+                                // ),
+                                // const SizedBox(
+                                //   height: 15,
+                                // ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text('${diaryList[index]['d_title']}:'),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(diaryList[index]['d_content'], ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      diaryList[index]['d_emoji'] == '기쁨'
+                                          ? Image.asset(
+                                              'images/joy.png',
+                                              width: 30,
+                                              height: 30,
+                                            )
+                                          : Image.asset(
+                                              'images/sad.png',
+                                              width: 30,
+                                              height: 30,
+                                            )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

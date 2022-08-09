@@ -6,16 +6,16 @@
 
     <%
     request.setCharacterEncoding("utf-8");
-    String u_id = request.getParameter("uid");
-    String u_pw = request.getParameter("upw");
+    String u_nickname = request.getParameter("u_nickname");
+    String u_email = request.getParameter("u_email");
+    String u_pw = request.getParameter("u_pw");
 
     String url_mysql = "jdbc:mysql://localhost/musik?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
-    String id_mysql="root";
-    String pw_mysql="qwer1234";
+    String id_mysql = "root";
+    String pw_mysql = "qwer1234";
 
     PreparedStatement ps = null;
 
-    
     JSONObject jsonList = new JSONObject();
     JSONArray itemList = new JSONArray();
 
@@ -23,33 +23,30 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
-
-        String whereDefault ="select u_id , u_pw , u_nickname, u_email from user where u_id = ? and u_pw = ? ";
+    
+    
+        String whereDefault = "select user from buser where u_nickname = ? and u_email = ? and u_pw = ? ";
 
         ps = conn_mysql.prepareStatement(whereDefault);
-        ps.setString(1, u_id);
-        ps.setString(2, u_pw);
+        ps.setString(1, u_nickname);
+        ps.setString(2, u_email);
+        ps.setString(3, u_pw);
 
         ResultSet rs = ps.executeQuery();
 
         if(rs.next()){
             JSONObject tempJson = new JSONObject();
-            tempJson.put("u_id", rs.getString(1));
-            tempJson.put("u_pw", rs.getString(2));
-            tempJson.put("u_nickname", rs.getString(3));
-            tempJson.put("u_email", rs.getString(4));
+            tempJson.put("buid", rs.getString(1));
             itemList.add(tempJson);
-            
         }else{
             itemList.add("ERROR");
         }
-        jsonList.put("results", itemList);
+        jsonList.put("results",itemList);
         conn_mysql.close();
         out.print(jsonList);
 
-    }catch(Exception e){
+        }catch(Exception e){
 
-        e.printStackTrace();
-
-    }
-    %>
+            e.printStackTrace();
+        }
+        %>

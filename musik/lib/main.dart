@@ -12,8 +12,8 @@ import 'package:musik/view/diaryhome.dart';
 import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
+import 'package:musik/view/playlist.dart';
 import 'package:musik/view/select_emotion.dart';
-import 'package:musik/view/song_detail.dart';
 import 'package:musik/view/splashscreen_diary.dart';
 import 'package:musik/view/splashscreen_lyrics.dart';
 import 'Login/login.dart';
@@ -66,20 +66,19 @@ class MyApp extends StatelessWidget {
         // 작사 감정 선택
         '/selectEmotion': (context) => const SelectEmotion(),
 
-        // diary 감정분석 스플래시 화면
-        '/Splashscreen_lyrics': (context) => const Splashscreen2(),
+         // diary 감정분석 스플래시 화면
+        '/Splashscreen_lyrics':(context) => const Splashscreen2(),
 
         // 작사 페이지
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
 
-        // Youtube Link
-        '/SongDetail': (context) => const SongDetail(),
+        // music playlist 페이지
+        '/playlist': (context) => const Playlist(),
 
         // tabbar 페이지
-        '/tabbar': (context) => const MainTabPage(),
+        //'/tabbar': (context) => const MainTabPage(),
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: '/tabbar',
     );
   }
 }

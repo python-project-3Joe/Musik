@@ -1,3 +1,4 @@
+from encodings.utf_8 import encode
 from flask import Flask, jsonify, render_template, request
 import joblib
 from bayes import BayesianFilter

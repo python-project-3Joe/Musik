@@ -240,12 +240,18 @@ class _LoginPageState extends State<LoginPage> {
         // print(users); // 결과 확인용
         User.uId = id;
         User.uNickname = users[0]['u_nickname'];
+        print(User.uId);
+        print(users[0]['u_nickname']);
+        print(users[0]['u_email']);
+        print(users[0]['u_pw']);
         Navigator.pop(context);
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const MainTabPage(); // Map으로 보내
+              return MainTabPage(
+                user: users[0],
+              ); // Map으로 보내
             },
           ),
         ); // 로그인 성공 리스트 화면으로 이동
@@ -254,35 +260,5 @@ class _LoginPageState extends State<LoginPage> {
 
     return true;
   } // Login
-
-  // _showDialog(BuildContext context) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext ctx) {
-  //         return AlertDialog(
-  //           title: const Icon(
-  //             Icons.task_alt_rounded,
-  //             size: 34,
-  //             color: Color.fromRGBO(83, 151, 253, 100),
-  //           ),
-  //           content: const Text('로그인 되었습니다.'),
-  //           actions: [
-  //             Center(
-  //               child: TextButton(
-  //                 child: const Text('확인'),
-  //                 onPressed: () {
-  //                   Navigator.of(ctx).pop();
-  //                   Navigator.push(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                         builder: (context) => const LoginPage(),
-  //                       ));
-  //                 },
-  //               ),
-  //             ),
-  //           ],
-  //         );
-  //       });
-  // }
 
 } //END
