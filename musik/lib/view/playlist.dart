@@ -173,7 +173,7 @@ class _PlaylistState extends State<Playlist> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    getJSONData(musicList[])
+                    getJSONData();
                   },
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
@@ -232,7 +232,7 @@ class _PlaylistState extends State<Playlist> {
   Future<bool> getJSONData() async {
     musicList = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/musik/daily_musicList.jsp?emotion=$emotion');
+        'http://localhost:8080/Flutter/musik/daily_musicList.jsp?emotion=$emotion&page=$page');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =
@@ -242,6 +242,8 @@ class _PlaylistState extends State<Playlist> {
 
     setState(() {
       musicList.addAll(result);
+      // 10페이지씩
+      page += 1;
     });
     print(musicList);
     return true;
