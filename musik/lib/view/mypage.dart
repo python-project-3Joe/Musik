@@ -68,16 +68,16 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: const IconThemeData(
-          color: Colors.deepPurple,
+          color: Colors.brown,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: const Text(
           '회원정보 수정',
           style: TextStyle(
-              color: Colors.deepPurple,
+              color: Colors.brown,
               fontWeight: FontWeight.bold,
-              fontSize: 20),
+              fontSize: 22),
         ),
       ),
       body: GestureDetector(
@@ -86,16 +86,16 @@ class _MyPageState extends State<MyPage> {
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.fromLTRB(60, 20, 60, 0),
             child: Column(
               children: [
                 Image.asset(
-                  'images/joy.png',
-                  width: 80,
-                  height: 90,
+                  'images/musik.png',
+                  width: 110,
+                  height: 110,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 TextField(
                   readOnly: true,
@@ -104,12 +104,12 @@ class _MyPageState extends State<MyPage> {
                     labelText: '아이디',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.amber),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
                     borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.orange),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -134,12 +134,12 @@ class _MyPageState extends State<MyPage> {
                     errorText: _nameErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.amber),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.orange),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -164,12 +164,12 @@ class _MyPageState extends State<MyPage> {
                     errorText: _emailErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.amber),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.orange),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -194,12 +194,12 @@ class _MyPageState extends State<MyPage> {
                     errorText: _passErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.amber),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.orange),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -222,16 +222,16 @@ class _MyPageState extends State<MyPage> {
                 TextField(
                   controller: _pwokController,
                   decoration: InputDecoration(
-                    labelText: '비밀번호 확인',
+                    labelText: '비밀번호 재확인',
                     errorText: _pass2ErrorText,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.amber),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(width: 2, color: Colors.deepPurple),
+                          const BorderSide(width: 2, color: Colors.orange),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -257,10 +257,10 @@ class _MyPageState extends State<MyPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
-                        fixedSize: const Size(140, 50),
+                        fixedSize: const Size(120, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
-                          side: const BorderSide(color: Colors.deepPurple),
+                          side: const BorderSide(color: Colors.orange),
                         ),
                       ),
                       onPressed: () {
@@ -270,7 +270,7 @@ class _MyPageState extends State<MyPage> {
                         '뒤로가기',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
+                          color: Colors.orange,
                         ),
                       ),
                     ),
@@ -279,8 +279,8 @@ class _MyPageState extends State<MyPage> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.deepPurple,
-                        fixedSize: const Size(140, 50),
+                        primary: Colors.orange,
+                        fixedSize: const Size(120, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -315,7 +315,7 @@ class _MyPageState extends State<MyPage> {
                     child: const Text(
                       '탈퇴하기',
                       style: TextStyle(
-                        color: Colors.deepPurple,
+                        color: Colors.brown,
                       ),
                     ),
                   ),
@@ -326,7 +326,7 @@ class _MyPageState extends State<MyPage> {
                     child: const Text(
                       '로그아웃',
                       style: TextStyle(
-                        color: Colors.deepPurple,
+                        color: Colors.brown,
                       ),
                     ),
                   ),
