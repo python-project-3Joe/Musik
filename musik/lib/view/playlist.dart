@@ -19,6 +19,21 @@ class _PlaylistState extends State<Playlist> {
   late String result; // 작사 결과값
   late List musicList;
 
+  // 페이지네이션 처리
+  bool loading = false, allLoaded = false;
+
+  mockFetch() async {
+    if(allLoaded) {
+      return;
+    }
+    setState(() {
+      loading = true;
+    });
+    await Future.delayed(Duration(microseconds: 500));
+    
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -31,6 +46,7 @@ class _PlaylistState extends State<Playlist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
@@ -160,19 +176,20 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: musicList.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    //
-                  },
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-                        child: Card(
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: musicList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      //
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                      child: Expanded(
+                        child: new Card(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -188,7 +205,7 @@ class _PlaylistState extends State<Playlist> {
                                 ],
                               ),
                               const SizedBox(
-                                width: 30,
+                                width: 10,
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -208,21 +225,14 @@ class _PlaylistState extends State<Playlist> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                width: 80,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [Text(musicList[index]['m_date'])],
-                              ),
                             ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                );
-              },
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

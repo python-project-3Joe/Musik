@@ -30,7 +30,7 @@
 
         ResultSet rs = ps.executeQuery();
 
-        if(rs.next()){
+        while(rs.next()){
             JSONObject tempJson = new JSONObject();
             tempJson.put("m_singer", rs.getString(1));
             tempJson.put("m_title", rs.getString(2));
@@ -38,8 +38,6 @@
             tempJson.put("m_link", rs.getString(4));
             tempJson.put("m_date", rs.getString(5));
             itemList.add(tempJson);
-        }else{
-            itemList.add("ERROR");
         }
         jsonList.put("results",itemList);
         conn_mysql.close();
