@@ -267,8 +267,10 @@ class _SignUpState extends State<SignUp> {
                   ),
                   ElevatedButton(
                       onPressed: () async {
+                        ///// 파이어베이스 회원가입
                         join();
                         _showCheckDialog(context);
+                        ///////////////////////////
                         id = idController.text;
                         pw = pwController.text;
                         name = nameController.text;
@@ -301,6 +303,7 @@ class _SignUpState extends State<SignUp> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
+        // 유저 이메일, 비밀번호 생성하기
         email: emailController.text,
         password: pwController.text,
       )
@@ -541,4 +544,4 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-}//end
+} //end

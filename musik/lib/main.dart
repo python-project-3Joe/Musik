@@ -24,6 +24,7 @@ import 'firebase_options.dart';
 void main() async {
   // 파이어베이스 비동기메소드를 사용하려면 플러터 코어 엔진 초기화 시켜줘야 함
   WidgetsFlutterBinding.ensureInitialized();
+  // 파이어베이스 초기 설정
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
