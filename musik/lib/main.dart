@@ -17,7 +17,6 @@ import 'package:musik/view/select_emotion.dart';
 import 'package:musik/view/song_detail.dart';
 import 'package:musik/view/splashscreen_diary.dart';
 import 'package:musik/view/splashscreen_lyrics.dart';
-import 'package:musik/view/videoplayer.dart';
 import 'Login/login.dart';
 
 void main() {
@@ -77,7 +76,6 @@ class MyApp extends StatelessWidget {
         // music playlist 페이지
         '/playlist': (context) => const Playlist(),
 
-        '/video': (context) => const VideoPlayerScreen(),
         // tabbar 페이지
         //'/tabbar': (context) => const MainTabPage(),
       },
