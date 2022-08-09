@@ -181,16 +181,18 @@ class _CalendarState extends State<Calendar> {
                             dId = diaryList[index]['d_id'].toString();
                             deleteShowDialog(context);
                           },
-                          // onTap: () {
-                          //   setState(() {
-                          //     Navigator.push(context, MaterialPageRoute(
-                          //       builder: (context) {
-                          //         return DiaryContent(
-                          //             diaryList: diaryList[index]); // Map으로 보내
-                          //       },
-                          //     )).then((value) => getJSONData());
-                          //   });
-                          // },
+                          // update diary
+                          onTap: () {
+                            setState(() {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return DiaryContent(
+                                      diaryList: diaryList[index]); // Map으로 보내
+                                },
+                              )).then((value) => getJSONData());
+                            });
+                          },
+
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(40, 3, 40, 3),
                             child: Container(
@@ -218,39 +220,49 @@ class _CalendarState extends State<Calendar> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(17, 10, 15, 5),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        17, 10, 15, 5),
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Column(
-                                          children: [
-                                            Text(
-                                                '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
-                                            Text(
-                                              '${diaryList[index]['d_title']}',
-                                              style: const TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Text(
-                                              diaryList[index]['d_content'],
-                                            ),
-                                          ],
+                                        Text(
+                                            '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                        const SizedBox(
+                                          width: 10,
                                         ),
+                                        Text(
+                                          '${diaryList[index]['d_title']}',
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          diaryList[index]['d_content'],
+                                        ),
+                                        // 이중 삼항 연산자로 기쁨 무무 슬픔 이모티콘 사진 표기
                                         diaryList[index]['d_emoji'] == '기쁨'
                                             ? Image.asset(
                                                 'images/joy.png',
                                                 width: 50,
                                                 height: 50,
                                               )
-                                            : Image.asset(
-                                                'images/sad.png',
-                                                width: 50,
-                                                height: 50,
-                                              )
+                                            : diaryList[index]['d_emoji'] ==
+                                                    '무무'
+                                                ? Image.asset(
+                                                    'images/dumdum.png',
+                                                    width: 50,
+                                                    height: 50,
+                                                  )
+                                                : Image.asset(
+                                                    'images/sad.png',
+                                                    width: 50,
+                                                    height: 50,
+                                                  )
                                       ],
                                     ),
                                   ),

@@ -22,7 +22,6 @@ class _PlaylistState extends State<Playlist> {
   // 페이지네이션 처리
   late int page;
 
-
   @override
   void initState() {
     super.initState();
@@ -47,7 +46,7 @@ class _PlaylistState extends State<Playlist> {
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
@@ -62,6 +61,9 @@ class _PlaylistState extends State<Playlist> {
                         emotion = 'happy';
                         // 기쁨 listdata 가져오기
                         getJSONData();
+                        // 감정 아이콘을 클릭하면 최초 페이지만 나오게끔 하기
+
+                        page = 0;
                       });
                     },
                     child: Column(
@@ -98,6 +100,9 @@ class _PlaylistState extends State<Playlist> {
                         emotion = 'indifference';
                         // 덤덤 listdata 가져오기
                         getJSONData();
+                        if (page != 0) {
+                          page = 0;
+                        }
                       });
                     },
                     child: Column(
@@ -134,6 +139,9 @@ class _PlaylistState extends State<Playlist> {
                         emotion = 'sad';
                         // 슬픔 listdata 가져오기
                         getJSONData();
+                        if (page != 0) {
+                          page = 0;
+                        }
                       });
                     },
                     child: Column(
@@ -166,61 +174,65 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: musicList.length,
+            SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    getJSONData();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-                    child: Expanded(
-                      child: new Card(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.network(
-                                  // 이미지 url
-                                  musicList[index]['m_image'],
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.fill,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(musicList[index]['m_title']) // 노래 제목
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Column(
-                                  children: [
-                                    Text(musicList[index]['m_singer']) // 가수 이름
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: musicList.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      getJSONData();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                      child: Expanded(
+                        child: Card(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Image.network(
+                                    // 이미지 url
+                                    musicList[index]['m_image'],
+                                    width: 80,
+                                    height: 80,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(musicList[index]['m_title']) // 노래 제목
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                          musicList[index]['m_singer']) // 가수 이름
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),
