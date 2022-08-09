@@ -47,7 +47,7 @@ dependencies:
   google_sign_in: ^5.3.3      	# 구글 로그인 API
   pie_chart: ^5.3.2             # pie chart 구현
 
-
+  youtube_player_flutter: ^8.1.0 # youtube link
   
 dev_dependencies:
   flutter_test:

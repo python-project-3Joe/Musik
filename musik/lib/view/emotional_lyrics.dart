@@ -48,6 +48,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text('뮤식이의 AI 작사'),
@@ -55,15 +56,18 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 80,
+            ),
             Image.asset(
               images,
               width: 100,
               height: 90,
             ),
             const SizedBox(
-              height: 15,
+              height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -89,10 +93,10 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
               ],
             ),
             const SizedBox(
-              height: 15,
+              height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(35, 5, 35, 0),
+              padding: const EdgeInsets.fromLTRB(60, 5, 60, 20),
               child: Text(
                 "$lyrics_result.",
                 style: TextStyle(fontSize: 18),
@@ -104,7 +108,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
             const Text(
               '뮤식이의 추천 플레이리스트는 어때요?',
               style: TextStyle(
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w600,
                 fontSize: 18,
               ),
             ),

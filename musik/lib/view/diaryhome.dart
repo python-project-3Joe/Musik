@@ -12,7 +12,6 @@ class DiaryHome extends StatefulWidget {
 }
 
 class _DiaryHomeState extends State<DiaryHome> {
-
   late String uNickname;
   late String emotion;
   late String emotionPath;
@@ -22,7 +21,7 @@ class _DiaryHomeState extends State<DiaryHome> {
     super.initState();
     emotion = '';
     emotionPath = '';
-    uNickname = User.uNickname; 
+    uNickname = User.uNickname;
   }
 
   @override
@@ -34,23 +33,21 @@ class _DiaryHomeState extends State<DiaryHome> {
           padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start, 
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$uNickname님',
+                '$uNickname 님',
                 style: const TextStyle(
                     color: Colors.amber,
                     fontSize: 19,
                     fontWeight: FontWeight.w900),
-               ),
+              ),
               const SizedBox(
                 height: 5,
               ),
               Text(
                 '오늘의 감정은 어때요?',
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w900),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
               ),
               const SizedBox(
                 height: 20,
@@ -78,11 +75,11 @@ class _DiaryHomeState extends State<DiaryHome> {
               const Text(
                 '나의 감정을 기록해보세요.\n뮤식이가 감정을 분석해서 음악을 추천해줘요',
                 style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 154, 154, 154),
-                          fontSize: 15,
-                        ),
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(255, 154, 154, 154),
+                  fontSize: 15,
                 ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -117,7 +114,7 @@ class _DiaryHomeState extends State<DiaryHome> {
                           fontSize: 15,
                         ),
                       ),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.note_add_rounded,
                         size: 25,
                         color: Colors.white,
@@ -139,10 +136,10 @@ class _DiaryHomeState extends State<DiaryHome> {
               const Text(
                 '감정을 선택하면 뮤식이가 작사를 해드려요',
                 style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 154, 154, 154),
-                          fontSize: 15,
-                        ),
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(255, 154, 154, 154),
+                  fontSize: 15,
+                ),
               ),
               const SizedBox(
                 height: 20,
