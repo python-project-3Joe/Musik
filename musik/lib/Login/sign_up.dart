@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:musik/Login/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -11,11 +13,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final _authentication = FirebaseAuth.instance;
+
   // Property
   late TextEditingController idController;
   late TextEditingController pwController;
   late TextEditingController nameController;
   late TextEditingController emailController;
+
+  late String Hint;
 
   late String id;
   late String pw;
@@ -30,6 +36,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
+    Hint = '';
     idController = TextEditingController();
     pwController = TextEditingController();
     nameController = TextEditingController();
@@ -87,6 +94,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextField(
                             controller: idController,
+                            onChanged: (value) {
+                              id = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: 'ID 를 입력하세요',
                               labelStyle: TextStyle(
@@ -158,6 +168,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextFormField(
                             controller: pwController,
+                            onChanged: (value) {
+                              pw = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: '특수,대소문자,숫자 포함 8~15자이내로 입력',
                               labelStyle: TextStyle(
@@ -192,6 +205,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextField(
                             controller: nameController,
+                            onChanged: (value) {
+                              name = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: '성함을 입력하세요',
                               labelStyle: TextStyle(
@@ -225,6 +241,9 @@ class _SignUpState extends State<SignUp> {
                         Flexible(
                           child: TextFormField(
                             controller: emailController,
+                            onChanged: (value) {
+                              email = value;
+                            },
                             decoration: const InputDecoration(
                               labelText: 'email 형식으로 입력하세요',
                               labelStyle: TextStyle(
@@ -247,7 +266,11 @@ class _SignUpState extends State<SignUp> {
                     height: 40,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        ///// 파이어베이스 회원가입
+                        join();
+                        _showCheckDialog(context);
+                        ///////////////////////////
                         id = idController.text;
                         pw = pwController.text;
                         name = nameController.text;
@@ -274,6 +297,62 @@ class _SignUpState extends State<SignUp> {
   }
 
   // --- Functions
+
+  // 파이어베이스 회원가입 -----------------
+  join() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        // 유저 이메일, 비밀번호 생성하기
+        email: emailController.text,
+        password: pwController.text,
+      )
+          .then((value) {
+        if (value.user!.email == null) {
+        } else {
+          _showFinishDialog(context);
+        }
+        return value;
+      });
+      FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        setState(() {
+          Hint = '\u26A0 비밀번호 보안성이 낮습니다. 다시 입력해주세요.';
+        });
+      } else if (e.code == 'email-already-in-use') {
+        setState(() {
+          Hint = '중복된 아이디입니다. 다른 아이디를 입력해주세요.';
+        });
+      } else {
+        setState(() {
+          Hint = '\u26A0 오류가 발생했습니다.\n 잠시 후 다시 시도해주세요';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        Hint = '\u26A0 오류가 발생하였습니다. \n 잠시후 다시 시도해주세요.';
+      });
+    }
+  }
+
+  _showCheckDialog(BuildContext ctx) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            content: Text(Hint),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        });
+  }
 
   Future getJSONData() async {
     data.clear();
@@ -345,15 +424,14 @@ class _SignUpState extends State<SignUp> {
         context: context,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            title: const Text('환영합니다'),
-            content: const Text('회원가입이 완료되었습니다'),
+            content: Text('회원가입이 완료되었습니다!'),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
                   Navigator.pushNamed(context, '/Log_in');
                 },
-                child: const Text('로그인하러가기'),
+                child: const Text('확인'),
               ),
             ],
           );
@@ -466,4 +544,4 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-}//end
+} //end

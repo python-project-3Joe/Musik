@@ -18,8 +18,16 @@ import 'package:musik/view/song_detail.dart';
 import 'package:musik/view/splashscreen_diary.dart';
 import 'package:musik/view/splashscreen_lyrics.dart';
 import 'Login/login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  // 파이어베이스 비동기메소드를 사용하려면 플러터 코어 엔진 초기화 시켜줘야 함
+  WidgetsFlutterBinding.ensureInitialized();
+  // 파이어베이스 초기 설정
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
   initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
