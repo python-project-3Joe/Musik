@@ -41,7 +41,7 @@ class _FindMainState extends State<FindMain>
         ),
       ),
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255, 164, 154, 239),
+        color: Colors.amber,
         height: 60,
         child: TabBar(
           controller: controller,

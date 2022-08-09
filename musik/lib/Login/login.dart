@@ -102,14 +102,14 @@ class _LoginPageState extends State<LoginPage> {
                                             const FindMain()));
                               },
                               child: const Text(
-                                '아이디찾기',
+                                '아이디찾기     ',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),
                               ),
                             ),
                             const Text(
-                              '|',
+                              '   |   ',
                               style: TextStyle(
                                 color: Colors.black,
                               ),
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                                             const FindMain2()));
                               },
                               child: const Text(
-                                ' 비밀번호찾기',
+                                '    비밀번호찾기  ',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),
@@ -135,10 +135,10 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(280, 50),
+                              fixedSize: const Size(260, 50),
                               primary: Colors.black,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             onPressed: () {
@@ -155,10 +155,10 @@ class _LoginPageState extends State<LoginPage> {
                               }
                             },
                             child: const Text(
-                              '로 그 인',
+                              '로   그   인',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.white),
                             ),
                           ),
@@ -181,8 +181,8 @@ class _LoginPageState extends State<LoginPage> {
                             '회 원 가 입',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.black),
+                                fontSize: 18,
+                                color: Colors.black87),
                           ),
                         ),
                       ],
