@@ -68,16 +68,16 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: const IconThemeData(
-          color: Colors.deepPurple,
+          color: Colors.brown,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: const Text(
           '회원정보 수정',
           style: TextStyle(
-              color: Colors.deepPurple,
+              color: Colors.brown,
               fontWeight: FontWeight.bold,
-              fontSize: 20),
+              fontSize: 22),
         ),
       ),
       body: GestureDetector(
@@ -86,13 +86,13 @@ class _MyPageState extends State<MyPage> {
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.all(50.0),
             child: Column(
               children: [
                 Image.asset(
-                  'images/joy.png',
-                  width: 80,
-                  height: 90,
+                  'images/musik.png',
+                  width: 110,
+                  height: 110,
                 ),
                 const SizedBox(
                   height: 20,
