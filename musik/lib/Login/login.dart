@@ -241,6 +241,9 @@ class _LoginPageState extends State<LoginPage> {
         User.uId = id;
         User.uNickname = users[0]['u_nickname'];
         print(User.uId);
+        print(users[0]['u_nickname']);
+        print(users[0]['u_email']);
+        print(users[0]['u_pw']);
         Navigator.pop(context);
         Navigator.push(
           context,

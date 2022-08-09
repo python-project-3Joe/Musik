@@ -24,7 +24,7 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
-        String whereDefault ="select u_id , u_pw , u_nickname from user where u_id = ? and u_pw = ? ";
+        String whereDefault ="select u_id , u_pw , u_nickname, u_email from user where u_id = ? and u_pw = ? ";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, u_id);
@@ -37,6 +37,7 @@
             tempJson.put("u_id", rs.getString(1));
             tempJson.put("u_pw", rs.getString(2));
             tempJson.put("u_nickname", rs.getString(3));
+            tempJson.put("u_email", rs.getString(4));
             itemList.add(tempJson);
             
         }else{

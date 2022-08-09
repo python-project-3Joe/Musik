@@ -89,9 +89,10 @@ class _MyPageState extends State<MyPage> {
             padding: const EdgeInsets.all(32.0),
             child: Column(
               children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage('images/logo.png'),
-                  radius: 40,
+                Image.asset(
+                  'images/joy.png',
+                  width: 80,
+                  height: 90,
                 ),
                 const SizedBox(
                   height: 20,
