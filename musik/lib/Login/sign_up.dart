@@ -49,13 +49,13 @@ class _SignUpState extends State<SignUp> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            foregroundColor: Color.fromARGB(255, 164, 154, 239),
+            foregroundColor: Colors.brown,
             title: const Text(
               "회원가입",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.brown
               ),
             ),
             toolbarHeight: 100,
@@ -94,12 +94,12 @@ class _SignUpState extends State<SignUp> {
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 164, 154, 239)),
+                                    color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.text,
                             cursorColor:
-                                const Color.fromARGB(255, 164, 154, 239),
+                               Colors.brown,
                           ),
                         ),
                         ElevatedButton(
@@ -133,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 255, 225, 53),
+                              primary: Colors.amber[500],
                               minimumSize: const Size(80, 40),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -165,13 +165,13 @@ class _SignUpState extends State<SignUp> {
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 164, 154, 239)),
+                                    color: Colors.brown),
                               ),
                             ),
                             obscureText: true,
                             keyboardType: TextInputType.text,
                             cursorColor:
-                                const Color.fromARGB(255, 164, 154, 239),
+                                Colors.brown,
                           ),
                         ),
                       ],
@@ -199,12 +199,12 @@ class _SignUpState extends State<SignUp> {
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 164, 154, 239)),
+                                    color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.text,
                             cursorColor:
-                                const Color.fromARGB(255, 164, 154, 239),
+                                Colors.brown,
                           ),
                         ),
                       ],
@@ -232,12 +232,12 @@ class _SignUpState extends State<SignUp> {
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 164, 154, 239)),
+                                    color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.emailAddress,
                             cursorColor:
-                                const Color.fromARGB(255, 164, 154, 239),
+                                Colors.brown,
                           ),
                         ),
                       ],
@@ -259,7 +259,7 @@ class _SignUpState extends State<SignUp> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 255, 225, 53),
+                        primary: Colors.amber[500],
                         minimumSize: const Size(80, 40),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
