@@ -201,7 +201,9 @@ class _PlaylistState extends State<Playlist> {
                               children: [
                                 Column(
                                   children: [
-                                    Text(musicList[index]['m_title']) // 노래 제목
+                                      musicList[index]['m_title'].length > 20 ?
+                                      '${musicList[index]['m_title'].substring(0, 21)}...' :
+                                      musicList[index]['m_title'] // 노래 제목
                                   ],
                                 ),
                                 const SizedBox(
@@ -209,7 +211,11 @@ class _PlaylistState extends State<Playlist> {
                                 ),
                                 Column(
                                   children: [
-                                    Text(musicList[index]['m_singer']) // 가수 이름
+                                    Text( 
+                                      musicList[index]['m_singer'].length > 20 ?
+                                      '${musicList[index]['m_singer'].substring(0, 21)}...' :
+                                      musicList[index]['m_singer']
+                                      ) // 가수 이름
                                   ],
                                 ),
                               ],
