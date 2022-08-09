@@ -5,6 +5,10 @@
     pageEncoding="UTF-8"%>
 
     <%
+    int pages = Integer.parseInt(request.getParameter("page"));
+
+    int offset2 = (pages+1) * 10;
+
     request.setCharacterEncoding("utf-8");
     String emotion = request.getParameter("emotion");
 
@@ -23,10 +27,11 @@
         Statement stmt_mysql = conn_mysql.createStatement();
     
     
-        String whereDefault = "select m_singer, m_title, m_image, m_link, m_date from music where m_emotion = ?";
+        String whereDefault = "select m_singer, m_title, m_image, m_link, m_date from music where m_emotion = ? LIMIT 10 OFFSET ?";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, emotion);
+        ps.setInt(2, offset2);
 
         ResultSet rs = ps.executeQuery();
 

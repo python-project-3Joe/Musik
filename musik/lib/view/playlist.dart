@@ -30,7 +30,7 @@ class _PlaylistState extends State<Playlist> {
       loading = true;
     });
     await Future.delayed(Duration(microseconds: 500));
-    
+
   }
 
 
