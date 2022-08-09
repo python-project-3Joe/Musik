@@ -114,7 +114,7 @@ class _DiaryHomeState extends State<DiaryHome> {
                           fontSize: 15,
                         ),
                       ),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.note_add_rounded,
                         size: 25,
                         color: Colors.white,
