@@ -36,7 +36,7 @@ class _DiaryHomeState extends State<DiaryHome> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Music is life님',
+                '$uNickname 님',
                 style: const TextStyle(
                     color: Colors.amber,
                     fontSize: 19,
