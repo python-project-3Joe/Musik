@@ -21,7 +21,8 @@ class _CalendarState extends State<Calendar> {
 
   late String uId;
   late String uNickname;
-
+  late String result;
+  late String dId;
   late List diaryList;
 
   @override
@@ -175,16 +176,21 @@ class _CalendarState extends State<Calendar> {
                       itemCount: diaryList.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) {
-                                  return DiaryContent(
-                                      diaryList: diaryList[index]); // Map으로 보내
-                                },
-                              )).then((value) => getJSONData());
-                            });
+                          //calenderDelete
+                          onLongPress: () {
+                            dId = diaryList[index]['d_id'].toString();
+                            deleteShowDialog(context);
                           },
+                          // onTap: () {
+                          //   setState(() {
+                          //     Navigator.push(context, MaterialPageRoute(
+                          //       builder: (context) {
+                          //         return DiaryContent(
+                          //             diaryList: diaryList[index]); // Map으로 보내
+                          //       },
+                          //     )).then((value) => getJSONData());
+                          //   });
+                          // },
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
                             child: Container(
@@ -283,5 +289,57 @@ class _CalendarState extends State<Calendar> {
     });
     print(diaryList);
     return true;
+  }
+
+  deleteAction() async {
+    var url = Uri.parse(
+        "http://localhost:8080/Flutter/musik/daily_delete.jsp?did=$dId");
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+
+      if (result == 'OK') {
+        getJSONData();
+        Navigator.pop(context);
+      } else {
+        errorSnackBar(context);
+      }
+    });
+  }
+
+  deleteShowDialog(BuildContext ctx) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: const Text('삭제'),
+            content: const Text('정말로 삭제하시겠습니까?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('아니오'),
+              ),
+              TextButton(
+                onPressed: () {
+                  deleteAction();
+                },
+                child: const Text('예'),
+              ),
+            ],
+          );
+        });
+  }
+
+  errorSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('사용자 정보 삭제에 문제가 발생하였습니다.'),
+        duration: Duration(seconds: 1),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 }
