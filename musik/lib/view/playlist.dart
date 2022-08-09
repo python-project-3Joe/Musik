@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart' as http;
 
 class Playlist extends StatefulWidget {
   const Playlist({Key? key}) : super(key: key);
@@ -14,6 +17,22 @@ class _PlaylistState extends State<Playlist> {
   late String emotion; // 감정값
   late String emotionPath;
   late String result; // 작사 결과값
+  late List musicList;
+
+  // 페이지네이션 처리
+  bool loading = false, allLoaded = false;
+
+  mockFetch() async {
+    if(allLoaded) {
+      return;
+    }
+    setState(() {
+      loading = true;
+    });
+    await Future.delayed(Duration(microseconds: 500));
+
+  }
+
 
   @override
   void initState() {
@@ -21,11 +40,13 @@ class _PlaylistState extends State<Playlist> {
     emotion = "";
     emotionPath = '';
     result = '';
+    musicList = [];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
@@ -48,7 +69,9 @@ class _PlaylistState extends State<Playlist> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/joy.png';
-                        emotion = '기쁨';
+                        emotion = 'happy';
+                        // 기쁨 listdata 가져오기
+                        getJSONData();
                       });
                     },
                     child: Column(
@@ -82,7 +105,9 @@ class _PlaylistState extends State<Playlist> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/dumdum.png';
-                        emotion = '무무';
+                        emotion = 'indifference';
+                        // 덤덤 listdata 가져오기
+                        getJSONData();
                       });
                     },
                     child: Column(
@@ -116,7 +141,9 @@ class _PlaylistState extends State<Playlist> {
                     onTap: () {
                       setState(() {
                         emotionPath = 'images/sad.png';
-                        emotion = '슬픔';
+                        emotion = 'sad';
+                        // 슬픔 listdata 가져오기
+                        getJSONData();
                       });
                     },
                     child: Column(
@@ -149,58 +176,86 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-              child: Card(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: [
-                        Image.network(
-                          // 이미지 url
-                          "https://cdnimg.melon.co.kr/cm2/album/images/108/16/959/10816959_20211217144957_500.jpg?c1818ddc493cb2bbb4d268431e6de7b5/melon/resize/282/quality/80/optimize",
-                          width: 80,
-                          height: 80,
-                          fit: BoxFit.fill,
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: musicList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      //
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                      child: Expanded(
+                        child: new Card(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Image.network(
+                                    // 이미지 url
+                                    musicList[index]['m_image'],
+                                    width: 80,
+                                    height: 80,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(musicList[index]['m_title']) // 노래 제목
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(musicList[index]['m_singer']) // 가수 이름
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Text("사랑인가봐") // 노래 제목
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Column(
-                          children: [
-                            Text("멜로망스") // 가수 이름
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 80,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [Text("2022.07.22")],
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  // Function
+  Future<bool> getJSONData() async {
+    musicList = []; // 초기화
+    var url = Uri.parse(
+        'http://localhost:8080/Flutter/musik/daily_musicList.jsp?emotion=$emotion');
+
+    var response = await http.get(url); // 빌드가 끝날 때까지 기다려
+    var dataConvertedJSON =
+        json.decode(utf8.decode(response.bodyBytes)); // 한글깨짐방지, map방식으로 변환
+
+    List result = dataConvertedJSON['results'];
+
+    setState(() {
+      musicList.addAll(result);
+    });
+    print(musicList);
+    return true;
   }
 }
