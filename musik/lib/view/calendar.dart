@@ -64,7 +64,7 @@ class _CalendarState extends State<Calendar> {
                         ),
                       ),
                       const Text(
-                        '님',
+                        ' 님',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -192,12 +192,12 @@ class _CalendarState extends State<Calendar> {
                           //   });
                           // },
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+                            padding: const EdgeInsets.fromLTRB(40, 3, 40, 3),
                             child: Container(
                               width: 200,
                               height: 100,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(30),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
@@ -214,47 +214,42 @@ class _CalendarState extends State<Calendar> {
                                 ],
                               ),
                               margin: const EdgeInsets.only(bottom: 10),
-                              child: Column(
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(17, 0, 15, 5),
-                                    child: Column(
+                                        const EdgeInsets.fromLTRB(17, 10, 15, 5),
+                                    child: Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.end,
                                       children: [
-                                        Text(
-                                            '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          '${diaryList[index]['d_title']}:',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          diaryList[index]['d_content'],
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
+                                        Column(
+                                          children: [
+                                            Text(
+                                                '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                            Text(
+                                              '${diaryList[index]['d_title']}',
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              diaryList[index]['d_content'],
+                                            ),
+                                          ],
                                         ),
                                         diaryList[index]['d_emoji'] == '기쁨'
                                             ? Image.asset(
                                                 'images/joy.png',
-                                                width: 30,
-                                                height: 30,
+                                                width: 50,
+                                                height: 50,
                                               )
                                             : Image.asset(
                                                 'images/sad.png',
-                                                width: 30,
-                                                height: 30,
+                                                width: 50,
+                                                height: 50,
                                               )
                                       ],
                                     ),
