@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() {
       if (result[0] == 'ERROR') {
-        // print(result); // 결과 확인용
+        print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
       } else {
         users.addAll(result);
