@@ -20,18 +20,7 @@ class _PlaylistState extends State<Playlist> {
   late List musicList;
 
   // 페이지네이션 처리
-  bool loading = false, allLoaded = false;
-
-  mockFetch() async {
-    if(allLoaded) {
-      return;
-    }
-    setState(() {
-      loading = true;
-    });
-    await Future.delayed(Duration(microseconds: 500));
-
-  }
+  late int page;
 
 
   @override
@@ -41,6 +30,7 @@ class _PlaylistState extends State<Playlist> {
     emotionPath = '';
     result = '';
     musicList = [];
+    page = 0;
   }
 
   @override
@@ -176,63 +166,61 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            SingleChildScrollView(
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: musicList.length,
               scrollDirection: Axis.vertical,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: musicList.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      //
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-                      child: Expanded(
-                        child: new Card(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Image.network(
-                                    // 이미지 url
-                                    musicList[index]['m_image'],
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(musicList[index]['m_title']) // 노래 제목
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(musicList[index]['m_singer']) // 가수 이름
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    getJSONData();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                    child: Expanded(
+                      child: new Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Image.network(
+                                  // 이미지 url
+                                  musicList[index]['m_image'],
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.fill,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(musicList[index]['m_title']) // 노래 제목
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Column(
+                                  children: [
+                                    Text(musicList[index]['m_singer']) // 가수 이름
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -244,7 +232,7 @@ class _PlaylistState extends State<Playlist> {
   Future<bool> getJSONData() async {
     musicList = []; // 초기화
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/musik/daily_musicList.jsp?emotion=$emotion');
+        'http://localhost:8080/Flutter/musik/daily_musicList.jsp?emotion=$emotion&page=$page');
 
     var response = await http.get(url); // 빌드가 끝날 때까지 기다려
     var dataConvertedJSON =
@@ -254,6 +242,8 @@ class _PlaylistState extends State<Playlist> {
 
     setState(() {
       musicList.addAll(result);
+      // 10페이지씩
+      page += 1;
     });
     print(musicList);
     return true;
