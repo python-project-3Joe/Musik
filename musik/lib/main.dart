@@ -65,8 +65,8 @@ class MyApp extends StatelessWidget {
         // 작사 감정 선택
         '/selectEmotion': (context) => const SelectEmotion(),
 
-         // diary 감정분석 스플래시 화면
-        '/Splashscreen_lyrics':(context) => const Splashscreen2(),
+        // diary 감정분석 스플래시 화면
+        '/Splashscreen_lyrics': (context) => const Splashscreen2(),
 
         // 작사 페이지
         '/emotionalLyrics': (context) => const EmotionalLyrics(),
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
         // tabbar 페이지
         '/tabbar': (context) => const MainTabPage(),
       },
-      initialRoute: '/Log_in',
+      initialRoute: '/tabbar',
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:musik/diaryMessage.dart';
+import 'package:musik/lyricsMessage.dart';
 import 'package:musik/userMessage.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:http/http.dart' as http;
 
 class EmotionalAnalysis extends StatefulWidget {
   const EmotionalAnalysis({Key? key}) : super(key: key);
@@ -21,6 +24,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
   late String dtitle;
   late Map<String, double> dataMap;
   late String images;
+  late String emotion;
 
   @override
   void initState() {
@@ -31,6 +35,7 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
     neutral = double.parse(diary.neutral);
     positive = double.parse(diary.positive);
     uid = User.uId;
+    emotion = "";
     Map<String, double> dataMap = {};
 
     // setState(() {
@@ -39,13 +44,16 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
     setState(() {
       if (result == "positive") {
         result = "기쁨";
+        emotion = 'happy';
         images = "images/joy.png";
       } else if (result == "neutral") {
         result = "무관심";
         images = "images/dumdum.png";
+        emotion = "Indifference";
       } else {
         result = "슬픔";
         images = "images/sad.png";
+        emotion = 'sad';
       }
     });
   }
@@ -226,7 +234,8 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                       ),
                     ),
                     onPressed: () {
-                      //
+                      emotion;
+                      getJSONData();
                     },
                     child: const Text(
                       '뮤식이의 AI 작사',
@@ -267,5 +276,18 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
         ),
       ),
     );
+  }
+
+  void getJSONData() async {
+    var url = Uri.parse('http://127.0.0.1:5010//markov?emotion=$emotion');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      result = dataConvertedJSON['result'];
+      lyrics.emotion = emotion;
+      print(result);
+      lyrics.lyric = result;
+      Navigator.pushNamed(context, '/Splashscreen_lyrics');
+    });
   }
 }
