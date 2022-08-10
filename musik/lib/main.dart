@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
         //'/tabbar': (context) => const MainTabPage(),
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: '/playlist',
+      initialRoute: '/selectEmotion',
     );
   }
 }

@@ -124,7 +124,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/playlist');
+                // Navigator.pushNamed(context, '/playlist');
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(
