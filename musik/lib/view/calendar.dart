@@ -218,32 +218,47 @@ class _CalendarState extends State<Calendar> {
                               margin: const EdgeInsets.only(bottom: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(
                                         17, 10, 15, 5),
                                     child: Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                             '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        Text(
-                                          '${diaryList[index]['d_title']}',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              diaryList[index]['d_title']
+                                                          .length >
+                                                      10
+                                                  ? '${diaryList[index]['d_title'].substring(0, 10)}...'
+                                                  : diaryList[index]['d_title'],
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(diaryList[index]['d_content']
+                                                        .length >
+                                                    10
+                                                ? '${diaryList[index]['d_content'].substring(0, 10)}...'
+                                                : diaryList[index]
+                                                    ['d_content']),
+                                          ],
                                         ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          diaryList[index]['d_content'],
-                                        ),
+                                        const SizedBox(width: 15,),
                                         // 이중 삼항 연산자로 기쁨 무무 슬픔 이모티콘 사진 표기
                                         diaryList[index]['d_emoji'] == '기쁨'
                                             ? Image.asset(
