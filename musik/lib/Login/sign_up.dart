@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:musik/Login/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -13,15 +12,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _authentication = FirebaseAuth.instance;
-
   // Property
   late TextEditingController idController;
   late TextEditingController pwController;
   late TextEditingController nameController;
   late TextEditingController emailController;
-
-  late String Hint;
 
   late String id;
   late String pw;
@@ -36,7 +31,6 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    Hint = '';
     idController = TextEditingController();
     pwController = TextEditingController();
     nameController = TextEditingController();
@@ -60,10 +54,9 @@ class _SignUpState extends State<SignUp> {
             title: const Text(
               "회원가입",
               style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown
-              ),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.brown),
             ),
             toolbarHeight: 100,
             elevation: 0,
@@ -103,13 +96,11 @@ class _SignUpState extends State<SignUp> {
                                 color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.brown),
+                                borderSide: BorderSide(color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.text,
-                            cursorColor:
-                               Colors.brown,
+                            cursorColor: Colors.brown,
                           ),
                         ),
                         ElevatedButton(
@@ -177,14 +168,47 @@ class _SignUpState extends State<SignUp> {
                                 color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.brown),
+                                borderSide: BorderSide(color: Colors.brown),
                               ),
                             ),
                             obscureText: true,
                             keyboardType: TextInputType.text,
-                            cursorColor:
-                                Colors.brown,
+                            cursorColor: Colors.brown,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(60, 10, 60, 10),
+                    child: Row(
+                      children: [
+                        const Text(
+                          '패스워드 확인 : ',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                          child: TextFormField(
+                            controller: pwController,
+                            onChanged: (value) {
+                              pw = value;
+                            },
+                            decoration: const InputDecoration(
+                              labelText: '특수,대소문자,숫자 포함 8~15자이내로 입력',
+                              labelStyle: TextStyle(
+                                color: Color.fromARGB(149, 106, 106, 106),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.brown),
+                              ),
+                            ),
+                            obscureText: true,
+                            keyboardType: TextInputType.text,
+                            cursorColor: Colors.brown,
                           ),
                         ),
                       ],
@@ -214,13 +238,11 @@ class _SignUpState extends State<SignUp> {
                                 color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.brown),
+                                borderSide: BorderSide(color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.text,
-                            cursorColor:
-                                Colors.brown,
+                            cursorColor: Colors.brown,
                           ),
                         ),
                       ],
@@ -250,13 +272,11 @@ class _SignUpState extends State<SignUp> {
                                 color: Color.fromARGB(149, 106, 106, 106),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.brown),
+                                borderSide: BorderSide(color: Colors.brown),
                               ),
                             ),
                             keyboardType: TextInputType.emailAddress,
-                            cursorColor:
-                                Colors.brown,
+                            cursorColor: Colors.brown,
                           ),
                         ),
                       ],
@@ -267,10 +287,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                   ElevatedButton(
                       onPressed: () async {
-                        ///// 파이어베이스 회원가입
-                        join();
-                        _showCheckDialog(context);
-                        ///////////////////////////
                         id = idController.text;
                         pw = pwController.text;
                         name = nameController.text;
@@ -297,62 +313,6 @@ class _SignUpState extends State<SignUp> {
   }
 
   // --- Functions
-
-  // 파이어베이스 회원가입 -----------------
-  join() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-        // 유저 이메일, 비밀번호 생성하기
-        email: emailController.text,
-        password: pwController.text,
-      )
-          .then((value) {
-        if (value.user!.email == null) {
-        } else {
-          _showFinishDialog(context);
-        }
-        return value;
-      });
-      FirebaseAuth.instance.currentUser?.sendEmailVerification();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        setState(() {
-          Hint = '\u26A0 비밀번호 보안성이 낮습니다. 다시 입력해주세요.';
-        });
-      } else if (e.code == 'email-already-in-use') {
-        setState(() {
-          Hint = '중복된 아이디입니다. 다른 아이디를 입력해주세요.';
-        });
-      } else {
-        setState(() {
-          Hint = '\u26A0 오류가 발생했습니다.\n 잠시 후 다시 시도해주세요';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        Hint = '\u26A0 오류가 발생하였습니다. \n 잠시후 다시 시도해주세요.';
-      });
-    }
-  }
-
-  _showCheckDialog(BuildContext ctx) {
-    showDialog(
-        context: context,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            content: Text(Hint),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: const Text('확인'),
-              ),
-            ],
-          );
-        });
-  }
 
   Future getJSONData() async {
     data.clear();
