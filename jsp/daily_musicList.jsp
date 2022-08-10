@@ -27,7 +27,8 @@
         Statement stmt_mysql = conn_mysql.createStatement();
     
     
-        String whereDefault = "select m_id, m_singer, m_title, m_lycrics, m_image, m_link, m_date from music where m_emotion = ? LIMIT 10 OFFSET ?";
+        String whereDefault = "select m_id, m_singer, m_title, m_lycrics,
+         m_image, m_link, m_date from music where m_emotion = ? LIMIT 10 OFFSET ?";
 
         ps = conn_mysql.prepareStatement(whereDefault);
         ps.setString(1, emotion);
