@@ -46,189 +46,166 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('My Emotion Diary'),
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        foregroundColor: Colors.brown,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          const SizedBox(
-            height: 30,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  // 기분 상태 아이콘
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          emotionPath = 'images/joy.png';
-                          emotion = '기쁨';
-                        });
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'images/joy.png',
-                            width: emotion == '기쁨' ? 110 : 100,
-                            height: emotion == '기쁨' ? 95 : 90,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            // 이미지 이름
-                            '기쁨',
-                            style: emotion == '기쁨'
-                                ? const TextStyle(
-                                    color: Colors.redAccent,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w900)
-                                : const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w900), /*enameEdit*/
-                          ),
-                        ],
+        appBar: AppBar(
+          title: const Text('My Emotion Diary'),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.brown,
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    // 기분 상태 아이콘
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            emotionPath = 'images/joy.png';
+                            emotion = '기쁨';
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'images/joy.png',
+                              width: emotion == '기쁨' ? 110 : 100,
+                              height: emotion == '기쁨' ? 95 : 90,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              // 이미지 이름
+                              '기쁨',
+                              style: emotion == '기쁨'
+                                  ? const TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w900)
+                                  : const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w900), /*enameEdit*/
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          emotionPath = 'images/dumdum.png';
-                          emotion = '무무';
-                        });
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'images/dumdum.png',
-                            width: emotion == '무무' ? 110 : 100,
-                            height: emotion == '무무' ? 95 : 90,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            // 이미지 이름
-                            '무무',
-                            style: emotion == '무무'
-                                ? const TextStyle(
-                                    color: Colors.amber,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w900)
-                                : const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w800), /*enameEdit*/
-                          ),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            emotionPath = 'images/dumdum.png';
+                            emotion = '무무';
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'images/dumdum.png',
+                              width: emotion == '무무' ? 110 : 100,
+                              height: emotion == '무무' ? 95 : 90,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              // 이미지 이름
+                              '무무',
+                              style: emotion == '무무'
+                                  ? const TextStyle(
+                                      color: Colors.amber,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w900)
+                                  : const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w800), /*enameEdit*/
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          emotionPath = 'images/sad.png';
-                          emotion = '슬픔';
-                        });
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'images/sad.png',
-                            width: emotion == '슬픔' ? 110 : 100,
-                            height: emotion == '슬픔' ? 95 : 90,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            // 이미지 이름
-                            '슬픔',
-                            style: emotion == '슬픔'
-                                ? const TextStyle(
-                                    color: Colors.blueAccent,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w900)
-                                : const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w900), /*enameEdit*/
-                          ),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            emotionPath = 'images/sad.png';
+                            emotion = '슬픔';
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'images/sad.png',
+                              width: emotion == '슬픔' ? 110 : 100,
+                              height: emotion == '슬픔' ? 95 : 90,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              // 이미지 이름
+                              '슬픔',
+                              style: emotion == '슬픔'
+                                  ? const TextStyle(
+                                      color: Colors.blueAccent,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w900)
+                                  : const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w900), /*enameEdit*/
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 350,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  // title
-                  TextField(
-                    controller: titleEdit,
-                    keyboardType: TextInputType.text,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: '일기 제목을 적어주세요.',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(147, 203, 183, 70),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            width: 2, color: Color.fromARGB(147, 203, 183, 70)),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 2, color: Colors.brown),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  // content
-                  SingleChildScrollView(
-                    child: TextField(
-                      controller: contentEdit,
+            const SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              height: 350,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    // title
+                    TextField(
+                      controller: titleEdit,
                       keyboardType: TextInputType.text,
-                      maxLines: 10,
+                      maxLines: 1,
                       decoration: InputDecoration(
-                        hintText: '당신의 감정을 적어주세요.',
+                        hintText: '일기 제목을 적어주세요.',
                         hintStyle: TextStyle(
                           color: Color.fromARGB(147, 203, 183, 70),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
-                              width: 2,
-                              color: Color.fromARGB(147, 203, 183, 70)),
+                              width: 2, color: Color.fromARGB(147, 203, 183, 70)),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -238,39 +215,67 @@ class _DiaryAddState extends State<DiaryAdd> {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // content
+                    SingleChildScrollView(
+                      child: TextField(
+                        controller: contentEdit,
+                        keyboardType: TextInputType.text,
+                        maxLines: 10,
+                        decoration: InputDecoration(
+                          hintText: '당신의 감정을 적어주세요.',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(147, 203, 183, 70),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                width: 2,
+                                color: Color.fromARGB(147, 203, 183, 70)),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(width: 2, color: Colors.brown),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(200, 30),
-              primary: Colors.amber,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(200, 30),
+                primary: Colors.amber,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                dtitle = titleEdit.text;
+                dcontent = contentEdit.text;
+                insertAction();
+    
+                getJSONData(); // 데이터저장
+              },
+              child: const Text(
+                'AI 감정 분석',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
               ),
             ),
-            onPressed: () {
-              dtitle = titleEdit.text;
-              dcontent = contentEdit.text;
-              insertAction();
-
-              getJSONData(); // 데이터저장
-            },
-            child: const Text(
-              'AI 감정 분석',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
-                fontSize: 15,
-              ),
-            ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

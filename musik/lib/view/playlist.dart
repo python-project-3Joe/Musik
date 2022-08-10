@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/lyricsMessage.dart';
 
 class Playlist extends StatefulWidget {
   const Playlist({Key? key}) : super(key: key);
@@ -94,13 +95,12 @@ class _PlaylistState extends State<Playlist> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        // 항상 첫페이지 부터 나오게하기 
+                        // 항상 첫페이지 부터 나오게하기
                         page = 0;
                         emotionPath = 'images/dumdum.png';
                         emotion = 'indifference';
                         // 덤덤 listdata 가져오기
                         getJSONData();
-
                       });
                     },
                     child: Column(
@@ -188,48 +188,62 @@ class _PlaylistState extends State<Playlist> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
                       child: Expanded(
-                        child: Card(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Image.network(
-                                    // 이미지 url
-                                    musicList[index]['m_image'],
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        musicList[index]['m_title'].length > 20 ?
-                                        '${musicList[index]['m_title'].substring(0,20)}...'
-                                        : musicList[index]['m_title']
-                                        ) // 노래 제목
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                          musicList[index]['m_singer']) // 가수 이름
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                        child: GestureDetector(
+                          onLongPress: () {
+                            setState(() {
+                              Lyrics.lyric = musicList[index]['m_lycrics'];
+                              Lyrics.mimage = musicList[index]['m_image'];
+                              Lyrics.msinger = musicList[index]['m_singer'];
+                              Lyrics.mtitle = musicList[index]['m_title'];
+                              Lyrics.mlink = musicList[index]['m_link'];
+                              Lyrics.date = musicList[index]['m_date'];
+                            });
+                            Navigator.pushNamed(context, '/songDetail');
+                          },
+                          child: Card(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: [
+                                    Image.network(
+                                      // 이미지 url
+                                      musicList[index]['m_image'],
+                                      width: 80,
+                                      height: 80,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(musicList[index]['m_title']
+                                                    .length >
+                                                20
+                                            ? '${musicList[index]['m_title'].substring(0, 20)}...'
+                                            : musicList[index]
+                                                ['m_title']) // 노래 제목
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(musicList[index]
+                                            ['m_singer']) // 가수 이름
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -258,7 +272,6 @@ class _PlaylistState extends State<Playlist> {
 
     setState(() {
       musicList.addAll(result);
-
     });
     print(musicList);
     return true;
