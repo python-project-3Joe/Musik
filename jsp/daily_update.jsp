@@ -5,9 +5,11 @@
     <%
 
     request.setCharacterEncoding("utf-8");
+
+    String d_title = request.getParameter("dtitle");
     String d_content = request.getParameter("dcontent");
-    String d_emoji = request.getParameter("demoji");
-    String d_id = request.getParameter("d_id");
+    String d_emoji = request.getParameter("demotion");
+    String d_id = request.getParameter("did");
 
 
     String url_mysql = "jdbc:mysql://localhost/musik?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";

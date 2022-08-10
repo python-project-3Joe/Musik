@@ -11,25 +11,28 @@ class DiaryContent extends StatefulWidget {
 }
 
 class _DiaryContentState extends State<DiaryContent> {
-  // 타이틀, 이모지 사진경로, 이모지 이름
-  late String enameEdit; //ename
-  late String emotionPath; //epath
-  late TextEditingController contentEdit; //dcontent
+  // d_id, d_title, d_content, d_emoji, u_id,
+  late String emotionPath;
+  late TextEditingController titleEdit; // title
+  late TextEditingController contentEdit; // content
   late int did; // diary
-  late int eid; // emotion
-  late String content; // diary Json에 사용
+  late String emotion; // emotion
+  late String dtitle;
+  late String dcontent; // diary Json에 사용
   late String result;
 
   @override
   void initState() {
     super.initState();
-
+    emotionPath = '';
+    titleEdit = TextEditingController();
     contentEdit = TextEditingController();
-    enameEdit = widget.diaryList['ename'];
-    emotionPath = widget.diaryList['epath'];
-    contentEdit.text = widget.diaryList['dcontent'];
-    did = widget.diaryList['did'];
-    eid = widget.diaryList['eid'];
+    dtitle = '';
+    dcontent = '';
+    titleEdit.text = widget.diaryList['d_title'];
+    contentEdit.text = widget.diaryList['d_content'];
+    did = widget.diaryList['d_id'];
+    emotion = widget.diaryList['d_emoji'];
     result = '';
   }
 
@@ -51,259 +54,122 @@ class _DiaryContentState extends State<DiaryContent> {
           const SizedBox(
             height: 30,
           ),
-          Container(
-            color: Colors.brown[100],
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: [
-                    // 기분 상태 아이콘
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/perfect.png';
-                            enameEdit = '완벽해';
-                            eid = 7;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              // db에서 받아온 이미지패스경로받기
-                              backgroundImage: AssetImage('images/perfect.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '완벽해',
-                              style: enameEdit == '완벽해'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  // 기분 상태 아이콘
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          emotionPath = 'images/joy.png';
+                          emotion = '기쁨';
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'images/joy.png',
+                            width: emotion == '기쁨' ? 110 : 100,
+                            height: emotion == '기쁨' ? 95 : 90,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            // 이미지 이름
+                            '기쁨',
+                            style: emotion == '기쁨'
+                                ? const TextStyle(
+                                    color: Colors.redAccent,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w900)
+                                : const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w900), /*enameEdit*/
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/sohappy.png';
-                            enameEdit = '너무행복해';
-                            eid = 6;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('images/sohappy.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '너무행복해',
-                              style: enameEdit == '너무행복해'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          emotionPath = 'images/dumdum.png';
+                          emotion = '무무';
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'images/dumdum.png',
+                            width: emotion == '무무' ? 110 : 100,
+                            height: emotion == '무무' ? 95 : 90,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            // 이미지 이름
+                            '무무',
+                            style: emotion == '무무'
+                                ? const TextStyle(
+                                    color: Colors.amber,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w900)
+                                : const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w800), /*enameEdit*/
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/happy.png';
-                            enameEdit = '행복해';
-                            eid = 5;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              // db에서 받아온 이미지패스경로받기
-                              backgroundImage: AssetImage('images/happy.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '행복해',
-                              style: enameEdit == '행복해'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          emotionPath = 'images/sad.png';
+                          emotion = '슬픔';
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'images/sad.png',
+                            width: emotion == '슬픔' ? 110 : 100,
+                            height: emotion == '슬픔' ? 95 : 90,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            // 이미지 이름
+                            '슬픔',
+                            style: emotion == '슬픔'
+                                ? const TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w900)
+                                : const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w900), /*enameEdit*/
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/soso.png';
-                            enameEdit = '그냥그래';
-                            eid = 4;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              // db에서 받아온 이미지패스경로받기
-                              backgroundImage: AssetImage(
-                                  'images/soso.png' /*emotionPath */),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '그냥그래',
-                              style: enameEdit == '그냥그래'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/sad.png';
-                            enameEdit = '슬퍼';
-                            eid = 3;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('images/sad.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '슬퍼',
-                              style: enameEdit == '슬퍼'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/sick.png';
-                            enameEdit = '아파';
-                            eid = 2;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('images/sick.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '아파',
-                              style: enameEdit == '아파'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            emotionPath = 'images/bad.png';
-                            enameEdit = '기분나빠';
-                            eid = 1;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('images/bad.png'),
-                              radius: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              // 이미지 이름
-                              '기분나빠',
-                              style: enameEdit == '기분나빠'
-                                  ? const TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      color: Colors.black,
-                                    ), /*enameEdit*/
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -311,19 +177,24 @@ class _DiaryContentState extends State<DiaryContent> {
             height: 30,
           ),
           SizedBox(
-            height: 300,
+            height: 350,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
+                  // title
                   TextField(
-                    controller: contentEdit,
+                    controller: titleEdit,
                     keyboardType: TextInputType.text,
-                    maxLines: 10,
+                    maxLines: 1,
                     decoration: InputDecoration(
+                      hintText: '일기 제목을 적어주세요.',
+                      hintStyle: TextStyle(
+                        color: Color.fromARGB(147, 203, 183, 70),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 2, color: Colors.grey),
+                        borderSide: const BorderSide(
+                            width: 2, color: Color.fromARGB(147, 203, 183, 70)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -333,38 +204,63 @@ class _DiaryContentState extends State<DiaryContent> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // content
+                  SingleChildScrollView(
+                    child: TextField(
+                      controller: contentEdit,
+                      keyboardType: TextInputType.text,
+                      maxLines: 10,
+                      decoration: InputDecoration(
+                        hintText: '당신의 감정을 적어주세요.',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(147, 203, 183, 70),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              width: 2,
+                              color: Color.fromARGB(147, 203, 183, 70)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 2, color: Colors.brown),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
           const SizedBox(
-            height: 80,
+            height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              // 수정
-              CircleAvatar(
-                backgroundColor: Colors.lime[200],
-                radius: 35,
-                child: IconButton(
-                    onPressed: () {
-                      content = contentEdit.text;
-                      _editShowDialog(context);
-                    },
-                    icon: const Icon(Icons.edit_note_rounded)),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(200, 30),
+              primary: Colors.amber,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              // 삭제
-              CircleAvatar(
-                backgroundColor: Colors.pink[200],
-                radius: 35,
-                child: IconButton(
-                    onPressed: () {
-                      _showDeleteDialog(context);
-                    },
-                    icon: const Icon(Icons.delete_forever_rounded)),
+            ),
+            onPressed: () {
+              dtitle = titleEdit.text;
+              dcontent = contentEdit.text;
+              updateAction();
+              // 데이터저장
+            },
+            child: const Text(
+              '수정하기',
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                fontSize: 15,
               ),
-            ],
+            ),
           ),
         ]),
       ),
@@ -419,7 +315,7 @@ class _DiaryContentState extends State<DiaryContent> {
 // 수정 JSON
   Future<String> updateAction() async {
     var url = Uri.parse(
-        'http://192.168.5.83:8080/Flutter/daily_update.jsp?dcontent=$content&eid=$eid&did=$did');
+        'http://localhost:8080/Flutter/musik/daily_update.jsp?dtitle=$dtitle&dcontent=$dcontent&demotion=$emotion&did=$did');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
