@@ -321,7 +321,7 @@ class _MyPageState extends State<MyPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                      Navigator.of(context).pushNamedAndRemoveUntil('/Log_in', (route) => false);
                     },
                     child: const Text(
                       '로그아웃',
@@ -517,10 +517,11 @@ class _MyPageState extends State<MyPage> {
 // 탈퇴 JSON
   Future<String> leaveAction() async {
     var url = Uri.parse(
-        'http://localhost:8080/Flutter/beep_leave.jsp?buid=${_idController.text}');
+        'http://localhost:8080/Flutter/musik/user_leave.jsp?uid=${_idController.text}');
     var response = await http.get(url);
     var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
     result = dataConvertedJSON['result'];
+    print(result);
     setState(() {
       if (result == 'OK') {
         _leaveFinishDialog(context);
@@ -547,7 +548,7 @@ class _MyPageState extends State<MyPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil('/Log_in', (route) => false);
                 },
                 child: const Text('확인'),
               ),
