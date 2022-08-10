@@ -15,6 +15,7 @@ class _SignUpState extends State<SignUp> {
   // Property
   late TextEditingController idController;
   late TextEditingController pwController;
+  late TextEditingController pwCheckController;
   late TextEditingController nameController;
   late TextEditingController emailController;
 
@@ -33,6 +34,7 @@ class _SignUpState extends State<SignUp> {
     super.initState();
     idController = TextEditingController();
     pwController = TextEditingController();
+    pwCheckController = TextEditingController();
     nameController = TextEditingController();
     emailController = TextEditingController();
     data = [];
@@ -193,7 +195,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Flexible(
                           child: TextFormField(
-                            controller: pwController,
+                            controller: pwCheckController,
                             onChanged: (value) {
                               pw = value;
                             },
@@ -340,7 +342,11 @@ class _SignUpState extends State<SignUp> {
         if (RegExp(
                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
             .hasMatch(email)) {
-          _showDialog(context);
+          if (pwController.text != pwCheckController.text) {
+            errorSnackBar_pwCheck(context);
+          } else {
+            _showDialog(context);
+          }
         } else {
           errorSnackBar_Email(context);
         }
@@ -350,7 +356,7 @@ class _SignUpState extends State<SignUp> {
     } else {
       errorSnackBar_pw(context);
     }
-  }
+  } // val
 
   _showDialog(BuildContext ctx) {
     showDialog(
@@ -479,6 +485,16 @@ class _SignUpState extends State<SignUp> {
       const SnackBar(
         content:
             Text("\t\t\t\t패스워드를 특수/대소문자/숫자 포함\n\t\t\t8자 ~ 15자 이내로 입력해주세요."),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+
+  errorSnackBar_pwCheck(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("패스워드가 일치하지 않습니다!"),
         duration: Duration(seconds: 2),
         backgroundColor: Colors.red,
       ),
