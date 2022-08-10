@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musik/lyricsMessage.dart';
+import 'package:musik/view/playlist.dart';
 
 class EmotionalLyrics extends StatefulWidget {
   const EmotionalLyrics({Key? key}) : super(key: key);
@@ -29,11 +30,11 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
 
     setState(() {
       lyrics_result = Lyrics.lyric;
-      if (emotion == 'happy') {
-        emotion_name = '행복';
+      if (emotion == '기쁨') {
+        emotion_name = '기쁨';
         images = "images/joy.png";
         color = 'red';
-      } else if (emotion == 'sad') {
+      } else if (emotion == '슬픔') {
         emotion_name = '슬픔';
         color = 'blue';
         images = "images/sad.png";
@@ -77,7 +78,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 18,
-                      color: emotion_name == "행복"
+                      color: emotion_name == "기쁨"
                           ? Colors.red
                           : emotion_name == '슬픔'
                               ? Colors.blue
@@ -124,15 +125,15 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/playlist');
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return const DiaryAdd(); // 음악 추천 페이지로
-                //     },
-                //   ),
-                // );
+                // Navigator.pushNamed(context, '/playlist');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const Playlist(); // 음악 추천 페이지로
+                    },
+                  ),
+                );
               },
               child: const Text(
                 '뮤식이의 음악추천',

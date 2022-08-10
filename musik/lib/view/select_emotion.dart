@@ -215,6 +215,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       result = dataConvertedJSON['result'];
       Lyrics.emotion = emotion;
+      print(emotion);
       print(result);
       Lyrics.lyric = result;
     });
