@@ -9,7 +9,6 @@ import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
-import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
 import 'package:musik/view/playlist.dart';
@@ -66,8 +65,6 @@ class MyApp extends StatelessWidget {
         // diary 감정분석 스플래시 화면
         '/Splashscreen_diary': (context) => const Splashscreen1(),
 
-        // diary 리스트
-        '/diarylist': (context) => const DiaryList(),
 
         // 감정 분석 결과
         '/emotional_analysis': (context) => const EmotionalAnalysis(),

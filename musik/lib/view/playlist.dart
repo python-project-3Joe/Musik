@@ -69,8 +69,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/joy.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'happy' ? 90 : 80,
+                          height: emotion == 'happy' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -78,7 +78,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '기쁨',
-                          style: emotion == '기쁨'
+                          style: emotion == 'happy'
                               ? const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold)
@@ -107,8 +107,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/dumdum.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'indifference' ? 90 : 80,
+                          height: emotion == 'indifference' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -116,7 +116,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '무무',
-                          style: emotion == '무무'
+                          style: emotion == 'indifference'
                               ? const TextStyle(
                                   color: Colors.amber,
                                   fontWeight: FontWeight.bold)
@@ -144,8 +144,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/sad.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'sad' ? 90 : 80,
+                          height: emotion == 'sad' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -153,7 +153,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '슬픔',
-                          style: emotion == '슬픔'
+                          style: emotion == 'sad'
                               ? const TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.bold)
