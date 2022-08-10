@@ -78,7 +78,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '기쁨',
-                          style: emotion == '기쁨'
+                          style: emotion == 'happy'
                               ? const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold)
@@ -116,7 +116,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '무무',
-                          style: emotion == '무무'
+                          style: emotion == 'indifference'
                               ? const TextStyle(
                                   color: Colors.amber,
                                   fontWeight: FontWeight.bold)
@@ -153,7 +153,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '슬픔',
-                          style: emotion == '슬픔'
+                          style: emotion == 'sad'
                               ? const TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.bold)
