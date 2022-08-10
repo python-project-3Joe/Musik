@@ -40,6 +40,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       // appBar: AppBar(
       //   title: Text('$uNickname 님\n 감정 캘린더'),
@@ -98,7 +99,7 @@ class _CalendarState extends State<Calendar> {
                         _calendarFormat = format;
                       });
                     },
-
+      
                     // Day Changed
                     onDaySelected: (DateTime selectDay, DateTime focusDay) {
                       setState(() {
@@ -109,14 +110,14 @@ class _CalendarState extends State<Calendar> {
                       });
                       // getJSONData();
                     },
-
+      
                     selectedDayPredicate: (DateTime day) {
                       return isSameDay(selectedDay, day);
                     },
-
+      
                     eventLoader: (day) {
                       List dot = [];
-
+      
                       for (int i = 0; i < diaryList.length; i++) {
                         if (diaryList.isNotEmpty) {
                           if (day.toString().substring(0, 10) ==
@@ -137,7 +138,7 @@ class _CalendarState extends State<Calendar> {
                       // }
                       return dot;
                     },
-
+      
                     // Calendar Style
                     calendarStyle: const CalendarStyle(
                       selectedDecoration: BoxDecoration(
@@ -156,122 +157,146 @@ class _CalendarState extends State<Calendar> {
                 ),
               ],
             ),
-            Center(
-              child: diaryList.isEmpty
-                  ? Center(
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Text(
-                          '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
-                          style: TextStyle(
-                              color: Colors.amber,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ))
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: diaryList.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          //calenderDelete
-                          onLongPress: () {
-                            dId = diaryList[index]['d_id'].toString();
-                            deleteShowDialog(context);
-                          },
-                          // update diary
-                          onTap: () {
-                            setState(() {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) {
-                                  return DiaryContent(
-                                      diaryList: diaryList[index]); // Map으로 보내
-                                },
-                              )).then((value) => getJSONData());
-                            });
-                          },
-
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 3, 40, 3),
-                            child: Container(
-                              width: 200,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey
-                                        .withOpacity(0.4), //color of shadow
-                                    spreadRadius: 2, //spread radius
-                                    blurRadius: 2, // blur radius
-                                    offset: const Offset(
-                                        0, 1), // changes position of shadow
-                                    //first paramerter of offset is left-right
-                                    //second parameter is top to down
-                                  ),
-                                  //you can set more BoxShadow() here
-                                ],
-                              ),
-                              margin: const EdgeInsets.only(bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        17, 10, 15, 5),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                            '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          '${diaryList[index]['d_title']}',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          diaryList[index]['d_content'],
-                                        ),
-                                        // 이중 삼항 연산자로 기쁨 무무 슬픔 이모티콘 사진 표기
-                                        diaryList[index]['d_emoji'] == '기쁨'
-                                            ? Image.asset(
-                                                'images/joy.png',
-                                                width: 50,
-                                                height: 50,
-                                              )
-                                            : diaryList[index]['d_emoji'] ==
-                                                    '무무'
-                                                ? Image.asset(
-                                                    'images/dumdum.png',
-                                                    width: 50,
-                                                    height: 50,
-                                                  )
-                                                : Image.asset(
-                                                    'images/sad.png',
-                                                    width: 50,
-                                                    height: 50,
-                                                  )
-                                      ],
+            SingleChildScrollView(
+              child: Center(
+                child: diaryList.isEmpty
+                    ? Center(
+                        child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Text(
+                            '작성된 일기가 없습니다. \n\n 일기를  작성해주세요!',
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ))
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: diaryList.length,
+                         scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            //calenderDelete
+                            onLongPress: () {
+                              dId = diaryList[index]['d_id'].toString();
+                              deleteShowDialog(context);
+                            },
+                            // update diary
+                            onTap: () {
+                              setState(() {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return DiaryContent(
+                                        diaryList:
+                                            diaryList[index]); // Map으로 보내
+                                  },
+                                )).then((value) => getJSONData());
+                              });
+                            },
+            
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(40, 3, 40, 3),
+                              child: Container(
+                                width: 200,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey
+                                          .withOpacity(0.4), //color of shadow
+                                      spreadRadius: 2, //spread radius
+                                      blurRadius: 2, // blur radius
+                                      offset: const Offset(
+                                          0, 1), // changes position of shadow
+                                      //first paramerter of offset is left-right
+                                      //second parameter is top to down
                                     ),
-                                  ),
-                                ],
+                                    //you can set more BoxShadow() here
+                                  ],
+                                ),
+                                margin: const EdgeInsets.only(bottom: 10),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          17, 10, 15, 5),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              '${diaryList[index]['d_date'].substring(6, 7)}월 ${diaryList[index]['d_date'].substring(8, 10)}일'),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                diaryList[index]['d_title']
+                                                            .length >
+                                                        10
+                                                    ? '${diaryList[index]['d_title'].substring(0, 10)}...'
+                                                    : diaryList[index]
+                                                        ['d_title'],
+                                                style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(diaryList[index]
+                                                              ['d_content']
+                                                          .length >
+                                                      10
+                                                  ? '${diaryList[index]['d_content'].substring(0, 10)}...'
+                                                  : diaryList[index]
+                                                      ['d_content']),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          // 이중 삼항 연산자로 기쁨 무무 슬픔 이모티콘 사진 표기
+                                          diaryList[index]['d_emoji'] == '기쁨'
+                                              ? Image.asset(
+                                                  'images/joy.png',
+                                                  width: 50,
+                                                  height: 50,
+                                                )
+                                              : diaryList[index]['d_emoji'] ==
+                                                      '무무'
+                                                  ? Image.asset(
+                                                      'images/dumdum.png',
+                                                      width: 50,
+                                                      height: 50,
+                                                    )
+                                                  : Image.asset(
+                                                      'images/sad.png',
+                                                      width: 50,
+                                                      height: 50,
+                                                    )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+              ),
             ),
           ],
         ),
