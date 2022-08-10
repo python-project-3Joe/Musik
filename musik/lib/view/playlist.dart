@@ -69,8 +69,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/joy.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'happy' ? 90 : 80,
+                          height: emotion == 'happy' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -107,8 +107,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/dumdum.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'indifference' ? 90 : 80,
+                          height: emotion == 'indifference' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -144,8 +144,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/sad.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'sad' ? 90 : 80,
+                          height: emotion == 'sad' ? 90 : 80,
                         ),
                         const SizedBox(
                           height: 10,
