@@ -174,65 +174,66 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            SingleChildScrollView(
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: musicList.length,
               scrollDirection: Axis.vertical,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: musicList.length,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      getJSONData();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-                      child: Expanded(
-                        child: Card(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Image.network(
-                                    // 이미지 url
-                                    musicList[index]['m_image'],
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(musicList[index]['m_title']) // 노래 제목
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                          musicList[index]['m_singer']) // 가수 이름
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    getJSONData();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                    child: Expanded(
+                      child: Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Image.network(
+                                  // 이미지 url
+                                  musicList[index]['m_image'],
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.fill,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      musicList[index]['m_title'].length > 20 ?
+                                      '${musicList[index]['m_title'].substring(0,20)}...'
+                                      : musicList[index]['m_title']
+                                      ) // 노래 제목
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                        musicList[index]['m_singer']) // 가수 이름
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),
