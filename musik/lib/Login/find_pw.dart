@@ -92,20 +92,16 @@ class _FindPwState extends State<FindPw> {
                         labelStyle: TextStyle(
                           color: Colors.brown,
                         ),
-                        hintStyle: TextStyle(
-                            color: Colors.brown,
-                            fontSize: 14),
+                        hintStyle: TextStyle(color: Colors.brown, fontSize: 14),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          borderSide: BorderSide(
-                              width: 1.8,
-                              color: Colors.orange),
+                          borderSide:
+                              BorderSide(width: 1.8, color: Colors.orange),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: Colors.orange),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.orange),
                         ),
                       ),
                       keyboardType: TextInputType.text,
@@ -141,19 +137,15 @@ class _FindPwState extends State<FindPw> {
                       labelStyle: TextStyle(
                         color: Colors.brown,
                       ),
-                      hintStyle: TextStyle(
-                          color: Colors.brown,
-                          fontSize: 14),
+                      hintStyle: TextStyle(color: Colors.brown, fontSize: 14),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                        borderSide: BorderSide(
-                            width: 1.8,
-                            color: Colors.orange),
+                        borderSide:
+                            BorderSide(width: 1.8, color: Colors.orange),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide: BorderSide(
-                            width: 1, color: Colors.orange),
+                        borderSide: BorderSide(width: 1, color: Colors.orange),
                       ),
                     ),
                     keyboardType: TextInputType.emailAddress,

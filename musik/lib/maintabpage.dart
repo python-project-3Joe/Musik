@@ -37,7 +37,7 @@ class _MainTabPageState extends State<MainTabPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(
+      appBar: AppBar(
         title: const Text('Musik'),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -83,7 +83,7 @@ class _MainTabPageState extends State<MainTabPage>
         controller: controller,
         labelColor: Colors.amber,
         labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        indicatorColor:  Colors.amber,
+        indicatorColor: Colors.amber,
         unselectedLabelColor: Colors.grey,
         tabs: const [
           Tab(
