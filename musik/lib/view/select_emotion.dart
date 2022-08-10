@@ -209,7 +209,7 @@ class _SelectEmotionState extends State<SelectEmotion> {
 // Function
 
   void getJSONData() async {
-    var url = Uri.parse('http://127.0.0.1:5010//markov?emotion=$emotion');
+    var url = Uri.parse('http://127.0.0.1:5000//markov?emotion=$emotion');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
