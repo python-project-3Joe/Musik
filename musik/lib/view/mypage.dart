@@ -446,7 +446,7 @@ class _MyPageState extends State<MyPage> {
           return AlertDialog(
             title: const Icon(
               Icons.task_alt,
-              color: Colors.deepPurple,
+              color: Colors.amber,
             ),
             content: const Text('         수정이 완료되었습니다.'),
             actions: [
