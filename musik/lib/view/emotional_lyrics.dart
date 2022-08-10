@@ -21,14 +21,14 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
     super.initState();
 
     // 유저가 선택한 감정
-    emotion = lyrics.emotion;
+    emotion = Lyrics.emotion;
     // 작사 결과값
     lyrics_result = "";
 
     color = "";
 
     setState(() {
-      lyrics_result = lyrics.lyric;
+      lyrics_result = Lyrics.lyric;
       if (emotion == 'happy') {
         emotion_name = '행복';
         images = "images/joy.png";
@@ -124,6 +124,7 @@ class _EmotionalLyricsState extends State<EmotionalLyrics> {
                 ),
               ),
               onPressed: () {
+                Navigator.pushNamed(context, '/playlist');
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(

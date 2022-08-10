@@ -223,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> updateAction() async {
     users = []; // 초기화
     var url = Uri.parse(
-        'http://127.0.0.1:8080/Flutter/musik/daily_login.jsp?uid=$id&upw=$pw'
+        'http://localhost:8080/Flutter/musik/daily_login.jsp?uid=$id&upw=$pw'
         // get 방식으로 데이터 받아와서 넘기기
         );
     var response = await http.get(url);
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() {
       if (result[0] == 'ERROR') {
-        // print(result); // 결과 확인용
+        print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
       } else {
         users.addAll(result);
