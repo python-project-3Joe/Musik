@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:musik/diaryMessage.dart';
@@ -226,7 +226,6 @@ class _EmotionalAnalysisState extends State<EmotionalAnalysis> {
                       ),
                     ),
                     onPressed: () {
-                      
                       Navigator.pushNamed(context, '/selectEmotion');
                     },
                     child: const Text(

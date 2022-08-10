@@ -16,6 +16,7 @@ class _Splashscreen1State extends State<Splashscreen1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mood Diary',
       theme: ThemeData(
         primarySwatch: Colors.amber,

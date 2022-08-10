@@ -9,7 +9,6 @@ import 'package:musik/view/diaryadd.dart';
 import 'package:musik/view/diarycontent.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:musik/view/diaryhome.dart';
-import 'package:musik/view/diarylist.dart';
 import 'package:musik/view/emotional_alnalysis.dart';
 import 'package:musik/view/emotional_lyrics.dart';
 import 'package:musik/view/playlist.dart';
@@ -22,12 +21,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  // 파이어베이스 비동기메소드를 사용하려면 플러터 코어 엔진 초기화 시켜줘야 함
-  WidgetsFlutterBinding.ensureInitialized();
-  // 파이어베이스 초기 설정
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // // 파이어베이스 비동기메소드를 사용하려면 플러터 코어 엔진 초기화 시켜줘야 함
+  // WidgetsFlutterBinding.ensureInitialized();
+  // // 파이어베이스 초기 설정
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(const MyApp());
   initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
@@ -66,8 +65,6 @@ class MyApp extends StatelessWidget {
         // diary 감정분석 스플래시 화면
         '/Splashscreen_diary': (context) => const Splashscreen1(),
 
-        // diary 리스트
-        '/diarylist': (context) => const DiaryList(),
 
         // 감정 분석 결과
         '/emotional_analysis': (context) => const EmotionalAnalysis(),
@@ -83,6 +80,9 @@ class MyApp extends StatelessWidget {
 
         // music playlist 페이지
         '/playlist': (context) => const Playlist(),
+
+        // youtube music player page
+        '/songDetail': (context) => const SongDetail(),
 
         // tabbar 페이지
         //'/tabbar': (context) => const MainTabPage(),

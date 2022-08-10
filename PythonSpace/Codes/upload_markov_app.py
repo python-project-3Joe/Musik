@@ -15,7 +15,7 @@ app = Flask(__name__)
 def markov():
 # 감정값으로 happy를 받았을때----------------------------------------------------------
     emotion = request.args.get("emotion") # emotion 감정값 받아오기
-    if emotion == 'happy':
+    if emotion == '기쁨':
         import markov
         file = open("../Data/ballad_lyrics_happy.csv",encoding='UTF-8')
         text = str(file.readlines())
@@ -86,7 +86,7 @@ def markov():
 
 
 #감정값으로 sad를 받았을때 ---------------------------------------------------------------------------- 
-    elif emotion== "sad":
+    elif emotion== "슬픔":
         import markov
         file = open("../Data/ballad_lyrics_sad.csv",encoding='UTF-8')
         text = str(file.readlines())
@@ -226,4 +226,4 @@ def markov():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5010, debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

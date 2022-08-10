@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
+import 'package:musik/lyricsMessage.dart';
 
 class Playlist extends StatefulWidget {
   const Playlist({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class _PlaylistState extends State<Playlist> {
 
   // 페이지네이션 처리
   late int page;
-
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _PlaylistState extends State<Playlist> {
         foregroundColor: Colors.brown,
         elevation: 0,
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
@@ -58,6 +58,7 @@ class _PlaylistState extends State<Playlist> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
+                        page = 0;
                         emotionPath = 'images/joy.png';
                         emotion = 'happy';
                         // 기쁨 listdata 가져오기
@@ -68,8 +69,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/joy.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'happy' ? 100 : 80,
+                          height: emotion == 'happy' ? 100 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -77,7 +78,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '기쁨',
-                          style: emotion == '기쁨'
+                          style: emotion == 'happy'
                               ? const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold)
@@ -94,6 +95,8 @@ class _PlaylistState extends State<Playlist> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
+                        // 항상 첫페이지 부터 나오게하기
+                        page = 0;
                         emotionPath = 'images/dumdum.png';
                         emotion = 'indifference';
                         // 덤덤 listdata 가져오기
@@ -104,8 +107,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/dumdum.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'indifference' ? 100 : 80,
+                          height: emotion == 'indifference' ? 100 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -113,7 +116,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '무무',
-                          style: emotion == '무무'
+                          style: emotion == 'indifference'
                               ? const TextStyle(
                                   color: Colors.amber,
                                   fontWeight: FontWeight.bold)
@@ -130,6 +133,7 @@ class _PlaylistState extends State<Playlist> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
+                        page = 0;
                         emotionPath = 'images/sad.png';
                         emotion = 'sad';
                         // 슬픔 listdata 가져오기
@@ -140,8 +144,8 @@ class _PlaylistState extends State<Playlist> {
                       children: [
                         Image.asset(
                           'images/sad.png',
-                          width: 80,
-                          height: 80,
+                          width: emotion == 'sad' ? 100 : 80,
+                          height: emotion == 'sad' ? 100 : 80,
                         ),
                         const SizedBox(
                           height: 10,
@@ -149,7 +153,7 @@ class _PlaylistState extends State<Playlist> {
                         Text(
                           // 이미지 이름
                           '슬픔',
-                          style: emotion == '슬픔'
+                          style: emotion == 'sad'
                               ? const TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.bold)
@@ -166,61 +170,87 @@ class _PlaylistState extends State<Playlist> {
             const SizedBox(
               height: 50,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: musicList.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    getJSONData();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
-                    child: Expanded(
-                      child: new Card(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Image.network(
-                                  // 이미지 url
-                                  musicList[index]['m_image'],
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.fill,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+            Container(
+              width: 400,
+              height: 700,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: musicList.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      getJSONData();
+                      setState(() {
+                        page += 1;
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                      child: Expanded(
+                        child: GestureDetector(
+                          onLongPress: () {
+                            setState(() {
+                              Lyrics.lyric = musicList[index]['m_lycrics'];
+                              Lyrics.mimage = musicList[index]['m_image'];
+                              Lyrics.msinger = musicList[index]['m_singer'];
+                              Lyrics.mtitle = musicList[index]['m_title'];
+                              Lyrics.mlink = musicList[index]['m_link'];
+                              Lyrics.date = musicList[index]['m_date'];
+                            });
+                            Navigator.pushNamed(context, '/songDetail');
+                          },
+                          child: Card(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Column(
                                   children: [
-                                    Text(musicList[index]['m_title']) // 노래 제목
+                                    Image.network(
+                                      // 이미지 url
+                                      musicList[index]['m_image'],
+                                      width: 80,
+                                      height: 80,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 20,
+                                  width: 10,
                                 ),
                                 Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(musicList[index]['m_singer']) // 가수 이름
+                                    Column(
+                                      children: [
+                                        Text(musicList[index]['m_title']
+                                                    .length >
+                                                20
+                                            ? '${musicList[index]['m_title'].substring(0, 20)}...'
+                                            : musicList[index]
+                                                ['m_title']) // 노래 제목
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(musicList[index]
+                                            ['m_singer']) // 가수 이름
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -242,8 +272,6 @@ class _PlaylistState extends State<Playlist> {
 
     setState(() {
       musicList.addAll(result);
-      // 10페이지씩
-      page += 1;
     });
     print(musicList);
     return true;
