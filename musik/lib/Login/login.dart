@@ -217,6 +217,15 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
+  // 탈퇴 아이디로 로그인시 에러창
+    leaveUserSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('탈퇴된 계정입니다.'),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.orange,
+    ));
+  }
+
   // Login
   // 택스트필드에서 id,pw를 받아와서 로그인 버튼을 누르면 실행된다.
   // DB 다녀와서 계정이 없으면 알림창, 계정이 있으면 일기 리스트 화면으로 바로 넘어가기
@@ -235,26 +244,29 @@ class _LoginPageState extends State<LoginPage> {
       if (result[0] == 'ERROR') {
         print(result); // 결과 확인용
         loginfailSnackbar(context); // 로그인 실패 알림창
-      } else {
+      }else {
         users.addAll(result);
         // print(users); // 결과 확인용
         User.uId = id;
         User.uNickname = users[0]['u_nickname'];
-        print(User.uId);
-        print(users[0]['u_nickname']);
-        print(users[0]['u_email']);
-        print(users[0]['u_pw']);
-        Navigator.pop(context);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return MainTabPage(
-                user: users[0],
-              ); // Map으로 보내
-            },
-          ),
-        ); // 로그인 성공 리스트 화면으로 이동
+
+        // 탈퇴된 계정 실패에러바
+        if(users[0]['u_quit'] == '1'){
+          leaveUserSnackbar(context);
+        }else{
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return MainTabPage(
+                  user: users[0],
+                ); // Map으로 보내
+              },
+            ),
+          ); 
+        }
+// 로그인 성공 리스트 화면으로 이동
       }
     });
 
